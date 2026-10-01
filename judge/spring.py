@@ -18,11 +18,11 @@ def m2_repo():
     from .runtime import t1_repo
     return t1_repo()
 
-def maven(args,cwd,timeout=300):
+def maven(args,cwd,timeout=300,env=None):
     settings=Path(cwd)/'.bench-settings.xml'
     settings.write_text('<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"><offline>true</offline></settings>\n')
     cmd=['mvn','-B','-q','-o','-s',str(settings),'-Dmaven.repo.local='+str(m2_repo())]+args
-    r=run_limited(cmd,str(cwd),timeout,minimal_env(Path(cwd),{'MAVEN_OPTS':'-Xmx512m'}));r['command']=cmd;return r
+    r=run_limited(cmd,str(cwd),timeout,minimal_env(Path(cwd),{'MAVEN_OPTS':'-Xmx512m',**(env or {})}));r['command']=cmd;return r
 
 def app_sources(workspace):
     main=Path(workspace)/'src/main/java'

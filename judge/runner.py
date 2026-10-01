@@ -69,7 +69,7 @@ def doctor(track_name='base'):
     try:
         with tempfile.TemporaryFile()as f:f.write(b'test');f.flush();os.fsync(f.fileno());checks['local_file_fsync']=True
     except OSError:checks['local_file_fsync']=False
-    if track_name=='t1-spring':
+    if track_name!='base':
         from .spring import m2_repo
         checks['jdk_21_plus']=bool(match and int(match.group(1))>=21)
         try:mv=subprocess.run(['mvn','-v'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=30).stdout

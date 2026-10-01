@@ -1,6 +1,6 @@
-# ReserveLedger — Java 后端编程能力评测基准 v1.2.0
+# ReserveLedger — Java 后端编程能力评测基准 v1.3.0
 
-> 当前版本 **1.2.0**（新增 t1-spring 赛道，见 [CHANGELOG](CHANGELOG.md)）；base 赛道候选契约 `candidate/TASK.md` 仍为 1.0.0。
+> 当前版本 **1.3.0**（新增 t2-bugfix / t3-change 存量代码赛道，见 [CHANGELOG](CHANGELOG.md)）；base 赛道候选契约 `candidate/TASK.md` 仍为 1.0.0。
 
 **用一个能在有限开发预算内交付的小型 Java 后端项目，评估本地模型的实际工程能力，而不是只看它能否生成几段代码。**
 
@@ -27,6 +27,7 @@ python3 -m unittest discover -s tests   # 裁判单元测试
 | `candidate/` | base 赛道：题目、约束、起始代码、公开 smoke、公开评分说明 | **可以**，这是唯一可发给模型的部分 |
 | `tracks/t1-spring/candidate/` | t1-spring 赛道考生包（Spring Boot 版同一契约） | **可以**（只给对应赛道） |
 | `tracks/t1-spring/{reference,mediocre,overlay,judge-tools}` | t1 参考实现、区分度对照实现、裁判 JDBC overlay、契约测试工具 pom | 不可以 |
+| `tracks/orderdesk/` | t2/t3 共用的存量代码库、修复与表象补丁、t3 参考与错误变体、隐藏测试、快照生成器；只有 `bench.py prepare` 生成的工作区可以给模型 | 不可以（直接给） |
 | `judge/` | 隐藏裁判：80 个场景、随机 oracle、性能负载、缺陷检出、评分与报告 | 不可以 |
 | `reference/` | 参考实现与参考自测（含受控缺陷开关） | 不可以 |
 | `docs/` | 设计、操作手册、评分、场景矩阵、实验协议、限制、扩展 | 操作者文档 |
@@ -54,8 +55,10 @@ python3 -m unittest discover -s tests   # 裁判单元测试
 |---|---|---|
 | `base`（默认） | 纯 JDK 17 + Python 标准库 | 原始 ReserveLedger；冻结 JSON/日志辅助类，考察一致性推理、并发与恢复 |
 | `t1-spring` | Spring Boot 3.5.16 + Spring Data JPA + Flyway + H2，Java 21，离线 Maven | 同一份 HTTP 契约；额外考察事务边界、JPA/N+1、Jackson 严格性、Spring MVC 错误映射、Flyway、JUnit 黑盒测试。见 [赛道说明](docs/08-TRACK-T1-SPRING.md) |
+| `t2-bugfix` | 同 t1 技术栈，存量代码库 OrderDesk | 按用户工单修 6 个预埋的 Spring 典型缺陷（事务自调用、受检异常回滚、BigDecimal 比较、时区、丢更新、懒加载/N+1）；隐藏测试区分根因修复与只修表象。见 [存量赛道说明](docs/09-TRACKS-T2-T3-ORDERDESK.md) |
+| `t3-change` | 同上，起点为修好缺陷的 OrderDesk | 需求变更“部分发货”：新增 v2 接口、v1 完全兼容、Flyway 迁移在 v1 生产快照上回填、并发不超发 |
 
-所有命令都接受 `--track`，缺省为 `base`。t1-spring 需要先联网准备一次离线 Maven 仓库：`python3 tools/offline_repo.py fetch`。两条赛道成绩不能混排。
+所有命令都接受 `--track`，缺省为 `base`。t1-spring、t2-bugfix、t3-change 共用一个离线 Maven 仓库，需要先联网准备一次：`python3 tools/offline_repo.py fetch`。不同赛道成绩不能混排。
 
 ## 题目是什么
 
@@ -147,6 +150,7 @@ compare 自动拆分同标签下不同硬件/裁判/Agent 协议/模型配置；
 - [操作者手册](docs/01-OPERATOR-GUIDE.md)、[完整评分体系](docs/02-SCORING.md)、[80 场景矩阵](docs/03-CASE-MATRIX.md)。
 - [公平实验协议](docs/04-REPRODUCIBLE-EXPERIMENT.md)、[限制与威胁模型](docs/05-LIMITS-AND-THREAT-MODEL.md)、[维护与扩展](docs/06-MAINTAINER-AND-EXTENSION.md)。
 - [赛道 t1-spring](docs/08-TRACK-T1-SPRING.md)：Spring Boot 版契约、离线构建链、裁判 overlay、替换用例与区分度控制。
+- [赛道 t2-bugfix / t3-change](docs/09-TRACKS-T2-T3-ORDERDESK.md)：存量代码库、预埋缺陷与表象补丁、需求变更与生产快照、变体矩阵验收。
 - [技术来源](docs/07-SOURCES.md)、[实际自检证据](reports/validation/VALIDATION.md)、`examples/` 中的模型记录/人工评审/批量配置模板。
 
 ## 解释边界

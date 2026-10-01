@@ -1,0 +1,206 @@
+{
+  "track": "t3-change",
+  "checks": {
+    "unit_tests": true,
+    "variant_matrix": true
+  },
+  "passed": true,
+  "variants": [
+    {
+      "variant": "start",
+      "repeat": 0,
+      "score_10": 3.0,
+      "failed_units": [
+        "backfill",
+        "concurrency",
+        "partial_shipments",
+        "shipment_rules",
+        "startup",
+        "v1_ship_compat",
+        "v2_read"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "start",
+      "repeat": 1,
+      "score_10": 3.0,
+      "failed_units": [
+        "backfill",
+        "concurrency",
+        "partial_shipments",
+        "shipment_rules",
+        "startup",
+        "v1_ship_compat",
+        "v2_read"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "start",
+      "repeat": 2,
+      "score_10": 3.0,
+      "failed_units": [
+        "backfill",
+        "concurrency",
+        "partial_shipments",
+        "shipment_rules",
+        "startup",
+        "v1_ship_compat",
+        "v2_read"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "reference",
+      "repeat": 0,
+      "score_10": 10.0,
+      "failed_units": [],
+      "ok": true
+    },
+    {
+      "variant": "reference",
+      "repeat": 1,
+      "score_10": 10.0,
+      "failed_units": [],
+      "ok": true
+    },
+    {
+      "variant": "reference",
+      "repeat": 2,
+      "score_10": 10.0,
+      "failed_units": [],
+      "ok": true
+    },
+    {
+      "variant": "naive-backfill-by-status",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "backfill"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-backfill-by-status",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "backfill"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-backfill-by-status",
+      "repeat": 2,
+      "score_10": 9.0,
+      "failed_units": [
+        "backfill"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-v1-status-leak",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "v1_ship_compat"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-v1-status-leak",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "v1_ship_compat"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-v1-status-leak",
+      "repeat": 2,
+      "score_10": 9.0,
+      "failed_units": [
+        "v1_ship_compat"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-no-lock",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "concurrency"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-no-lock",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "concurrency"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-no-lock",
+      "repeat": 2,
+      "score_10": 9.0,
+      "failed_units": [
+        "concurrency"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-edit-v1",
+      "repeat": 0,
+      "score_10": 1.0,
+      "failed_units": [
+        "backfill",
+        "concurrency",
+        "partial_shipments",
+        "shipment_rules",
+        "startup",
+        "v1_read_compat",
+        "v1_ship_compat",
+        "v2_read"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-edit-v1",
+      "repeat": 1,
+      "score_10": 1.0,
+      "failed_units": [
+        "backfill",
+        "concurrency",
+        "partial_shipments",
+        "shipment_rules",
+        "startup",
+        "v1_read_compat",
+        "v1_ship_compat",
+        "v2_read"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "naive-edit-v1",
+      "repeat": 2,
+      "score_10": 1.0,
+      "failed_units": [
+        "backfill",
+        "concurrency",
+        "partial_shipments",
+        "shipment_rules",
+        "startup",
+        "v1_read_compat",
+        "v1_ship_compat",
+        "v2_read"
+      ],
+      "ok": true
+    }
+  ],
+  "note": "Tests the benchmark harness, reference fixes and controlled variants only. No model generation performed."
+}

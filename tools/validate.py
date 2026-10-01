@@ -28,8 +28,10 @@ def grade_args(out,workspace,label,run_id,track_name,calibration=None):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);p.add_argument('--allow-exec',action='store_true')
-    p.add_argument('--track',choices=('base','t1-spring'),default='base');a=p.parse_args()
+    p.add_argument('--track',choices=('base','t1-spring','t2-bugfix','t3-change'),default='base')
+    p.add_argument('--repeat',type=int,default=1,help='t2/t3: run every variant this many times (flakiness check)');a=p.parse_args()
     if not a.allow_exec:p.error('--allow-exec required; use a disposable non-sensitive environment')
+    if a.track in ('t2-bugfix','t3-change'):return brownfield(a)
     t=get_track(a.track);spring=a.track=='t1-spring'
     if spring:from judge.spring_mutation import assess,validate_mutants
     else:from judge.mutation import assess,validate_mutants
@@ -74,6 +76,18 @@ def main():
         write_json(out/'mediocre-summary.json',{'band':MEDIOCRE_BAND,'summary':mediocre['summary']})
     result={'track':a.track,'checks':checks,'passed':all(checks.values()),'note':'Tests the benchmark harness and reference only. No Qwen or other model generation performed.'}
     write_json(out/'validation-summary.json',result);print(json.dumps(result,ensure_ascii=False,indent=2));return 0 if result['passed']else 1
+def brownfield(a):
+    from judge import orderdesk
+    out=fresh_out(a.out);env=doctor(a.track);write_json(out/'environment.json',env)
+    if not env['ready']:raise RuntimeError('Unsupported environment; see environment.json')
+    unit=run_limited([sys.executable,'-m','unittest','discover','-s','tests','-v'],ROOT,120,minimal_env(out))
+    (out/'unit-tests.log').write_text(unit['output'],encoding='utf-8')
+    matrix=orderdesk.validate(a.track,out/'variants',a.repeat);write_json(out/'variants.json',matrix)
+    checks={'unit_tests':unit['returncode']==0 and not unit['timeout'],'variant_matrix':matrix['passed']}
+    result={'track':a.track,'checks':checks,'passed':all(checks.values()),'variants':matrix['variants'],
+            'note':'Tests the benchmark harness, reference fixes and controlled variants only. No model generation performed.'}
+    write_json(out/'validation-summary.json',result);print(json.dumps(result,ensure_ascii=False,indent=2));return 0 if result['passed']else 1
+
 if __name__=='__main__':
     try:raise SystemExit(main())
     except (OSError,ValueError,RuntimeError)as e:print('ERROR: '+str(e),file=sys.stderr);raise SystemExit(2)

@@ -8,7 +8,7 @@ from judge.aggregate import aggregate
 
 def main():
     parser=argparse.ArgumentParser(description='ReserveLedger Java Backend Bench '+VERSION);sub=parser.add_subparsers(dest='command',required=True)
-    tracks=('base','t1-spring')
+    tracks=('base','t1-spring','t2-bugfix','t3-change')
     doc=sub.add_parser('doctor');doc.add_argument('--track',choices=tracks,default='base')
     prep=sub.add_parser('prepare');prep.add_argument('--dest',required=True);prep.add_argument('--track',choices=tracks,default='base')
     cal=sub.add_parser('calibrate');cal.add_argument('--out',required=True);cal.add_argument('--reps',type=int,default=3);cal.add_argument('--allow-exec',action='store_true');cal.add_argument('--track',choices=tracks,default='base')
@@ -22,6 +22,19 @@ def main():
         if not 1<=count<=20:parser.error('performance repetitions must be 1..20')
     if a.command=='doctor':
         result=doctor(a.track);print(json.dumps(result,ensure_ascii=False,indent=2));return 0 if result['ready']else 2
+    if a.command=='prepare'and a.track in ('t2-bugfix','t3-change'):
+        from judge import orderdesk
+        print(orderdesk.prepare(a.track,Path(a.dest).resolve()));return 0
+    if a.command=='calibrate'and a.track in ('t2-bugfix','t3-change'):parser.error('t2-bugfix/t3-change have no performance calibration')
+    if a.command=='grade'and a.track in ('t2-bugfix','t3-change'):
+        from judge import orderdesk
+        meta=json.loads(Path(a.metadata).read_text())if a.metadata else None
+        r=orderdesk.grade(a.track,a.workspace,a.out,a.model_label,a.run_id,meta)
+        print(json.dumps(r['summary'],ensure_ascii=False));return 0 if r['summary']['integrity_ok']else 2
+    if a.command=='catalog'and a.track in ('t2-bugfix','t3-change'):
+        from judge import orderdesk
+        units=orderdesk.T2_UNITS if a.track=='t2-bugfix'else orderdesk.T3_UNITS
+        print(json.dumps({'track':a.track,'hidden_units':units},ensure_ascii=False,indent=2));return 0
     if a.command=='prepare':
         dest=Path(a.dest).resolve()
         if dest.exists():raise ValueError('Destination already exists; refusing to overwrite')

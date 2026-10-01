@@ -70,6 +70,16 @@ python3 tools/validate.py --out reports/validation/final-release --allow-exec
 
 实际执行平台为 Linux。没有在原生 macOS、Windows、全部 JDK17+ 版本或用户的硬件上执行；设计支持与实测支持需区分。没有执行真实停电、磁盘硬件故障、跨节点一致性、攻击性沙箱逃逸、长时间 soak、公开模型群体难度标定或 Java 分支覆盖统计。关于这些边界的详细说明见 docs/05-LIMITS-AND-THREAT-MODEL.md。
 
+## v1.3.0 新赛道验证（2026-10-01，macOS Apple Silicon，Maven 3.9.9）
+
+`v1.3/t2/` 与 `v1.3/t3/` 为 `tools/validate.py --track t2-bugfix --repeat 2` 与 `--track t3-change --repeat 3` 的结果，全部通过：
+
+- 裁判单元测试 54 项通过。
+- **t2-bugfix**（15 个变体 × 2 次 = 30 次评测，全部符合预期）：带缺陷的原始代码 4.0（6 个缺陷单元全失败）；全部修复 10.0；每次只撤回一个修复时恰好只有该缺陷的单元失败（9.0）；7 个只修表象的补丁（手工补偿、只改状态、只修退款处、写死时区、`synchronized`、EAGER、打开 open-in-view）都恰好丢掉对应单元（9.0）。
+- **t3-change**（6 个变体 × 3 次 = 18 次评测，全部符合预期）：起点 3.0；参考实现 10.0；回填只看 status、v1 泄露新状态、不加锁三种错误实现各只丢对应单元（9.0）；修改已发布 V1 迁移在快照上无法启动（1.0）。
+- 端到端：`bench.py prepare` 生成的两类工作区可离线执行 `mvn test`；放入参考修复/实现后 `bench.py grade` 均为 10.0，完整性校验通过。
+- 本轮未重跑 base 与 t1-spring 的完整自检；对它们的改动只有 doctor 的赛道判断、`maven()` 新增可选环境变量参数与 CLI 分支，由单元测试覆盖。
+
 ## v1.2.0 复验（2026-10-01，macOS Apple Silicon，JDK 25 运行 / Maven 3.9.9）
 
 `v1.2/base/` 与 `v1.2/t1/` 为两条赛道各自的 `tools/validate.py` 结果。

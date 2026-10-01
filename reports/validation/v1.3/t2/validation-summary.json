@@ -1,0 +1,287 @@
+{
+  "track": "t2-bugfix",
+  "checks": {
+    "unit_tests": true,
+    "variant_matrix": true
+  },
+  "passed": true,
+  "variants": [
+    {
+      "variant": "base",
+      "repeat": 0,
+      "score_10": 4.0,
+      "failed_units": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "base",
+      "repeat": 1,
+      "score_10": 4.0,
+      "failed_units": [
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "reference",
+      "repeat": 0,
+      "score_10": 10.0,
+      "failed_units": [],
+      "ok": true
+    },
+    {
+      "variant": "reference",
+      "repeat": 1,
+      "score_10": 10.0,
+      "failed_units": [],
+      "ok": true
+    },
+    {
+      "variant": "without-B1",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B1"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B1",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B1"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B2",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B2"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B2",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B2"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B3",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B3"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B3",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B3"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B4",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B4"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B4",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B4"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B5",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B5"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B5",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B5"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B6",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "without-B6",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B1-compensate",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B1"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B1-compensate",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B1"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B2-reset-status",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B2"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B2-reset-status",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B2"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B3-refund-only",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B3"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B3-refund-only",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B3"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B4-hardcoded-zone",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B4"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B4-hardcoded-zone",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B4"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B5-synchronized",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B5"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B5-synchronized",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B5"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B6-eager",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B6-eager",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B6-open-in-view",
+      "repeat": 0,
+      "score_10": 9.0,
+      "failed_units": [
+        "B6"
+      ],
+      "ok": true
+    },
+    {
+      "variant": "surface-B6-open-in-view",
+      "repeat": 1,
+      "score_10": 9.0,
+      "failed_units": [
+        "B6"
+      ],
+      "ok": true
+    }
+  ],
+  "note": "Tests the benchmark harness, reference fixes and controlled variants only. No model generation performed."
+}

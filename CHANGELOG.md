@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.0 — 2026-10-01
+
+新增两条共用存量代码库 **OrderDesk**（Spring Boot 3.5.16 / JPA / Flyway / H2，约 1.2k 行生产代码 + 现有测试）的赛道，与 t1-spring 共用离线 Maven 仓库。base 与 t1-spring 的契约、用例与评分不变。
+
+- **t2-bugfix**：6 个预埋缺陷（事务自调用、受检异常不回滚、BigDecimal scale 比较、系统时区、读改写丢更新、懒加载 500/N+1），考生只拿到用户工单。裁判以冻结 pom + 考生 `src/main` + 裁判保存的原始测试 + 隐藏测试执行 `mvn -o test`。计分：6 个工单各 1、现有测试 2、发布纪律 1、改动规模 1。
+- **t3-change**：在修好缺陷的代码库上实现“部分发货”，v2 新接口 + v1 完全兼容 + Flyway 迁移。裁判先用 v1.1 生成带数据的 H2 生产快照与 v1 响应清单，再把考生应用启动在快照副本上评测（启动、回填、v1 读/发货兼容、部分发货、规则、v2 查询、并发、回归、纪律各 1 分）。
+- 验收矩阵（`tools/validate.py --track t2-bugfix|t3-change [--repeat N]`）：每次只撤回一个修复时恰好只有该缺陷单元失败；7 个只修表象的补丁与 4 个 t3 错误实现都恰好丢掉对应单元。
+- `bench.py prepare|grade|catalog|doctor --track t2-bugfix|t3-change`；考生工作区只含代码库与该赛道文档。
+- `judge.spring.maven` 支持传入额外环境变量（快照路径）。
+
 ## 1.2.0 — 2026-10-01
 
 新增赛道 **t1-spring**：同一份 ReserveLedger HTTP 契约，用 Spring Boot 3.5.16 + Spring Data JPA + Flyway + H2（Java 21）实现。base 赛道的契约与用例语义不变；所有命令新增 `--track`，缺省 `base`。两条赛道成绩不能混排。
