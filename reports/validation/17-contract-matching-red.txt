@@ -1,0 +1,60 @@
+test_array_length_and_order_remain_strict (test_contract_matching.ContractMatchingTests.test_array_length_and_order_remain_strict) ... ok
+test_extra_nested_fields_are_allowed (test_contract_matching.ContractMatchingTests.test_extra_nested_fields_are_allowed) ... FAIL
+test_extra_response_fields_are_allowed (test_contract_matching.ContractMatchingTests.test_extra_response_fields_are_allowed) ... FAIL
+test_json_number_output_type_is_enforced (test_contract_matching.ContractMatchingTests.test_json_number_output_type_is_enforced) ... 
+  test_json_number_output_type_is_enforced (test_contract_matching.ContractMatchingTests.test_json_number_output_type_is_enforced) (actual=True) ... FAIL
+  test_json_number_output_type_is_enforced (test_contract_matching.ContractMatchingTests.test_json_number_output_type_is_enforced) (actual=1.0) ... FAIL
+test_missing_required_response_field_fails (test_contract_matching.ContractMatchingTests.test_missing_required_response_field_fails) ... ok
+
+======================================================================
+FAIL: test_extra_nested_fields_are_allowed (test_contract_matching.ContractMatchingTests.test_extra_nested_fields_are_allowed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_contract_matching.py", line 9, in test_extra_nested_fields_are_allowed
+    eq([{'sku':'A','quantity':1,'traceId':'x'}],[{'sku':'A','quantity':1}])
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/judge/cases.py", line 16, in eq
+    check(actual==expected,f'{message}: expected {expected!r}, got {actual!r}')
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/judge/runtime.py", line 13, in check
+    if not condition: raise CheckFailure(message)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+judge.runtime.CheckFailure: : expected [{'sku': 'A', 'quantity': 1}], got [{'sku': 'A', 'quantity': 1, 'traceId': 'x'}]
+
+======================================================================
+FAIL: test_extra_response_fields_are_allowed (test_contract_matching.ContractMatchingTests.test_extra_response_fields_are_allowed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_contract_matching.py", line 7, in test_extra_response_fields_are_allowed
+    eq({'items':[],'nextAfter':None,'traceId':'x'},{'items':[],'nextAfter':None})
+    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/judge/cases.py", line 16, in eq
+    check(actual==expected,f'{message}: expected {expected!r}, got {actual!r}')
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/judge/runtime.py", line 13, in check
+    if not condition: raise CheckFailure(message)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+judge.runtime.CheckFailure: : expected {'items': [], 'nextAfter': None}, got {'items': [], 'nextAfter': None, 'traceId': 'x'}
+
+======================================================================
+FAIL: test_json_number_output_type_is_enforced (test_contract_matching.ContractMatchingTests.test_json_number_output_type_is_enforced) (actual=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_contract_matching.py", line 14, in test_json_number_output_type_is_enforced
+    with self.subTest(actual=actual),self.assertRaises(CheckFailure):eq(actual,1)
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: CheckFailure not raised
+
+======================================================================
+FAIL: test_json_number_output_type_is_enforced (test_contract_matching.ContractMatchingTests.test_json_number_output_type_is_enforced) (actual=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_contract_matching.py", line 14, in test_json_number_output_type_is_enforced
+    with self.subTest(actual=actual),self.assertRaises(CheckFailure):eq(actual,1)
+                                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: CheckFailure not raised
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+FAILED (failures=4)

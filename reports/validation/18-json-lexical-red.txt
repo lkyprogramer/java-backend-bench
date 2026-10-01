@@ -1,0 +1,34 @@
+test_ascii_integers_keep_integer_type (test_benchkit.SuppliedJsonTests.test_ascii_integers_keep_integer_type) ... ok
+test_decimal_lexemes_remain_distinct (test_benchkit.SuppliedJsonTests.test_decimal_lexemes_remain_distinct) ... ok
+test_duplicate_object_keys_rejected (test_benchkit.SuppliedJsonTests.test_duplicate_object_keys_rejected) ... ok
+test_non_ascii_digits_rejected (test_benchkit.SuppliedJsonTests.test_non_ascii_digits_rejected) ... FAIL
+test_non_ascii_escape_hex_rejected (test_benchkit.SuppliedJsonTests.test_non_ascii_escape_hex_rejected) ... FAIL
+
+======================================================================
+FAIL: test_non_ascii_digits_rejected (test_benchkit.SuppliedJsonTests.test_non_ascii_digits_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_benchkit.py", line 18, in test_non_ascii_digits_rejected
+    def test_non_ascii_digits_rejected(self):self.assertEqual('rejected',self.parse('1\u0661'))
+                                             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'rejected' != 'accepted:Long'
+- rejected
++ accepted:Long
+
+
+======================================================================
+FAIL: test_non_ascii_escape_hex_rejected (test_benchkit.SuppliedJsonTests.test_non_ascii_escape_hex_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_benchkit.py", line 19, in test_non_ascii_escape_hex_rejected
+    def test_non_ascii_escape_hex_rejected(self):self.assertEqual('rejected',self.parse('"\\u００４１"'))
+                                                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'rejected' != 'accepted:String'
+- rejected
++ accepted:String
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.437s
+
+FAILED (failures=2)

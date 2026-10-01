@@ -1,0 +1,2 @@
+﻿model_label,configuration_id,attempts,distinct_java_sources,mean_10,median_10,min_10,max_10,sample_stddev,critical_gate_pass_rate,D01,D02,D03,D04,D05,D06,D07,D08,D09,D10
+NEGATIVE-CONTROL-NOT-A-MODEL,f8152f90b4dd,1,1,0.0,0.0,0.0,0.0,,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

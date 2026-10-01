@@ -1,0 +1,9 @@
+{
+  "id": "V03",
+  "dimension": "D03",
+  "title": "明细空数组、重复项、20 项上限",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

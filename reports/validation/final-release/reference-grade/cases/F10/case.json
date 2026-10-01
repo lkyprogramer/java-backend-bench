@@ -1,0 +1,9 @@
+{
+  "id": "F10",
+  "dimension": "D02",
+  "title": "统计数据与真实终态一致",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.228351
+}

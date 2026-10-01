@@ -1,0 +1,14 @@
+F.........
+======================================================================
+FAIL: test_batch_rollback (__main__.ContractTests.test_batch_rollback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 33, in test_batch_rollback
+    item('m8a',10);item('m8b',1);reserve('m8',[('m8a',2),('m8b',2)],status=409);self.assertEqual(stock('m8a')['available'],10)
+                                                                                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 8 != 10
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.125s
+
+FAILED (failures=1)

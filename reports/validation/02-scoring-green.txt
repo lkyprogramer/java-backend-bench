@@ -1,0 +1,12 @@
+test_all_pass_is_ten (test_scoring.ScoringTests.test_all_pass_is_ten) ... ok
+test_build_failure_zeroes_deliverability (test_scoring.ScoringTests.test_build_failure_zeroes_deliverability) ... ok
+test_empty_is_zero_not_perfect (test_scoring.ScoringTests.test_empty_is_zero_not_perfect) ... ok
+test_missing_and_timeout_remain_in_denominator (test_scoring.ScoringTests.test_missing_and_timeout_remain_in_denominator) ... ok
+test_missing_dimensions_are_zero (test_scoring.ScoringTests.test_missing_dimensions_are_zero) ... ok
+test_overall_mean_and_critical_cap (test_scoring.ScoringTests.test_overall_mean_and_critical_cap) ... ok
+test_relative_scores_are_bounded (test_scoring.ScoringTests.test_relative_scores_are_bounded) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK

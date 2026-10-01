@@ -1,0 +1,4 @@
+performance repetition 1/3: measured
+performance repetition 2/3: measured
+performance repetition 3/3: measured
+{"read_rps": 1157.9831944470527, "lifecycle_ops_per_sec": 560.553467791659, "read_p95_ms": 13.34705799990843, "read_p50_ms": 4.494590999911452, "read_p99_ms": 25.612895999984175, "lifecycle_p95_ms": 25.197738999850117, "growth_ratio": 0.978545399387091, "peak_rss_bytes": 98705408, "java_cpu_seconds": 6.24}

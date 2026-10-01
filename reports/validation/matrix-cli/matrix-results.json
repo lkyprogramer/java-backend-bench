@@ -1,0 +1,8 @@
+[
+  {
+    "run_id": "compile-failure-control",
+    "returncode": 1,
+    "report": "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/report.json",
+    "log": "run-1.log"
+  }
+]

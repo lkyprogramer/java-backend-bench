@@ -1,0 +1,9 @@
+{
+  "id": "V05",
+  "dimension": "D03",
+  "title": "JSON 语法、重复键、字段完整性",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

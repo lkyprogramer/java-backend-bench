@@ -1,0 +1,14 @@
+.......F..
+======================================================================
+FAIL: test_state_filter (__main__.ContractTests.test_state_filter)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 37, in test_state_filter
+    item('m10',10);reserve('m10a',[('m10',1)]);b=reserve('m10b',[('m10',1)]);act(b,'confirm');page=request('GET','/v1/reservations?state=CONFIRMED&limit=100');self.assertTrue(page['items']);self.assertTrue(all(r['state']=='CONFIRMED'for r in page['items']))
+                                                                                                                                                                                              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.127s
+
+FAILED (failures=1)

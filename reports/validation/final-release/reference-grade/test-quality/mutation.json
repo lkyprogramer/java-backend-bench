@@ -1,0 +1,112 @@
+{
+  "score_10": 10.0,
+  "status": "measured",
+  "baseline_passed": true,
+  "baseline": [
+    {
+      "id": "correct-1",
+      "returncode": 0,
+      "timeout": false,
+      "log": "correct-1.log"
+    },
+    {
+      "id": "correct-2",
+      "returncode": 0,
+      "timeout": false,
+      "log": "correct-2.log"
+    }
+  ],
+  "mutants": [
+    {
+      "id": "M01",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M01.log",
+      "title": "允许超卖",
+      "killer": "C01",
+      "killed": true
+    },
+    {
+      "id": "M02",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M02.log",
+      "title": "相同幂等键重复创建",
+      "killer": "I01",
+      "killed": true
+    },
+    {
+      "id": "M03",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M03.log",
+      "title": "同键异参被接受",
+      "killer": "I03",
+      "killed": true
+    },
+    {
+      "id": "M04",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M04.log",
+      "title": "到期比较使用 > 而非 >=",
+      "killer": "T01",
+      "killed": true
+    },
+    {
+      "id": "M05",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M05.log",
+      "title": "重复取消多次释放",
+      "killer": "C04",
+      "killed": true
+    },
+    {
+      "id": "M06",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M06.log",
+      "title": "确认错误归还可用库存",
+      "killer": "F03",
+      "killed": true
+    },
+    {
+      "id": "M07",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M07.log",
+      "title": "已取消记录允许确认",
+      "killer": "T04",
+      "killed": true
+    },
+    {
+      "id": "M08",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M08.log",
+      "title": "多商品失败发生部分扣减",
+      "killer": "F06",
+      "killed": true
+    },
+    {
+      "id": "M09",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M09.log",
+      "title": "错误接受零预占数量",
+      "killer": "V02",
+      "killed": true
+    },
+    {
+      "id": "M10",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M10.log",
+      "title": "忽略列表状态过滤",
+      "killer": "F09",
+      "killed": true
+    }
+  ],
+  "timeout_policy": "no_kill_credit"
+}

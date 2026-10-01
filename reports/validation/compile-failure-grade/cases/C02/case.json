@@ -1,0 +1,9 @@
+{
+  "id": "C02",
+  "dimension": "D05",
+  "title": "并发相同幂等键只创建一次",
+  "critical": true,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

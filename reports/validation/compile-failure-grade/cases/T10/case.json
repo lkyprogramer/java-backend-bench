@@ -1,0 +1,9 @@
+{
+  "id": "T10",
+  "dimension": "D07",
+  "title": "时钟输入约束与零增量",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

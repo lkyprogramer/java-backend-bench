@@ -1,0 +1,9 @@
+{
+  "id": "I01",
+  "dimension": "D04",
+  "title": "相同请求不重复扣减",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

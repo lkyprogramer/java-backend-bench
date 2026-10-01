@@ -1,0 +1,9 @@
+{
+  "id": "T02",
+  "dimension": "D07",
+  "title": "最小与最大 TTL 精度",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.276682
+}

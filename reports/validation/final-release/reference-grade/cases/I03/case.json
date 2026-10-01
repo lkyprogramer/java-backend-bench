@@ -1,0 +1,9 @@
+{
+  "id": "I03",
+  "dimension": "D04",
+  "title": "同键异参冲突",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.406782
+}

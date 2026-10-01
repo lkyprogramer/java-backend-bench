@@ -1,0 +1,9 @@
+{
+  "id": "B06",
+  "dimension": "D01",
+  "title": "自定义端口、含空格数据路径可用",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

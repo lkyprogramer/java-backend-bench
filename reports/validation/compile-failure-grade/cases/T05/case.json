@@ -1,0 +1,9 @@
+{
+  "id": "T05",
+  "dimension": "D07",
+  "title": "已确认记录不再过期",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

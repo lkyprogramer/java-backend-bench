@@ -1,0 +1,9 @@
+{
+  "id": "T06",
+  "dimension": "D07",
+  "title": "已取消记录不重复释放",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

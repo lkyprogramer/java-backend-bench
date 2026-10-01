@@ -1,0 +1,9 @@
+{
+  "id": "B08",
+  "dimension": "D01",
+  "title": "同一数据目录互斥与失败退出",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

@@ -1,0 +1,9 @@
+{
+  "id": "I07",
+  "dimension": "D04",
+  "title": "取消和过期之后重试不重新激活",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

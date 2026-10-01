@@ -1,0 +1,253 @@
+{
+  "profile": {
+    "id": "reserveledger-standard-v1",
+    "warmup_reads": 200,
+    "read_requests": 1000,
+    "read_workers": 8,
+    "lifecycle_operations": 160,
+    "lifecycle_workers": 8,
+    "small_active": 100,
+    "large_active": 1500,
+    "scale_requests": 400,
+    "scale_workers": 4
+  },
+  "profile_sha256": "d97cbc481fd119e8376f75b54742213d5a20ccaaf1e3ac315c44d30f12e14ca6",
+  "environment": {
+    "os": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "logical_cpus": 5,
+    "java": "openjdk version \"21.0.11\" 2026-04-21\nOpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode, sharing)",
+    "javac": "javac 21.0.11",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "java_flags": [
+      "-Xms32m",
+      "-Xmx256m",
+      "-XX:ActiveProcessorCount=2",
+      "--add-modules",
+      "jdk.httpserver"
+    ],
+    "hostname": "bd6f70dc5df2",
+    "fingerprint": "7d582e96d6212a668097136da7e97f0bd65c2e335302ea1e22fcfb610c2adcb5"
+  },
+  "requested_reps": 3,
+  "status": "measured",
+  "repetitions": [
+    {
+      "index": 0,
+      "status": "measured",
+      "phases": {
+        "read": {
+          "requested": 1000,
+          "successful": 1000,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.8635703909999393,
+          "successful_ops_per_second": 1157.9831944470527,
+          "p50_ms": 4.494590999911452,
+          "p95_ms": 13.34705799990843,
+          "p99_ms": 25.612895999984175,
+          "loadgen_cpu_cores": 0.8428465283035057,
+          "possible_client_bottleneck": false
+        },
+        "lifecycle": {
+          "requested": 160,
+          "successful": 160,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.2478763400004027,
+          "successful_ops_per_second": 645.4831469584393,
+          "p50_ms": 10.671888000160834,
+          "p95_ms": 21.870095999929617,
+          "p99_ms": 35.158661999957985,
+          "loadgen_cpu_cores": 0.7866007905380694,
+          "possible_client_bottleneck": false
+        },
+        "small": {
+          "requested": 400,
+          "successful": 400,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.22313718099985635,
+          "successful_ops_per_second": 1792.6192228818088,
+          "p50_ms": 1.810574000046472,
+          "p95_ms": 4.418178999912925,
+          "p99_ms": 8.6969379999573,
+          "loadgen_cpu_cores": 0.9013874070593805,
+          "possible_client_bottleneck": true
+        },
+        "large": {
+          "requested": 400,
+          "successful": 400,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.40137817999993786,
+          "successful_ops_per_second": 996.5663803649265,
+          "p50_ms": 2.181234000090626,
+          "p95_ms": 12.86229600009392,
+          "p99_ms": 26.40353199967649,
+          "loadgen_cpu_cores": 0.7657888826942401,
+          "possible_client_bottleneck": false
+        }
+      },
+      "read_rps": 1157.9831944470527,
+      "lifecycle_ops_per_sec": 645.4831469584393,
+      "read_p95_ms": 13.34705799990843,
+      "read_p50_ms": 4.494590999911452,
+      "read_p99_ms": 25.612895999984175,
+      "lifecycle_p95_ms": 21.870095999929617,
+      "growth_ratio": 2.911221116289633,
+      "peak_rss_bytes": 98734080,
+      "java_cpu_seconds": 6.24,
+      "possible_client_bottleneck": true
+    },
+    {
+      "index": 1,
+      "status": "measured",
+      "phases": {
+        "read": {
+          "requested": 1000,
+          "successful": 1000,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 1.5523213880001094,
+          "successful_ops_per_second": 644.1964967630333,
+          "p50_ms": 6.275887999890983,
+          "p95_ms": 25.70120800010045,
+          "p99_ms": 149.33892399994875,
+          "loadgen_cpu_cores": 0.9632088004187793,
+          "possible_client_bottleneck": true
+        },
+        "lifecycle": {
+          "requested": 160,
+          "successful": 160,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.2939371620000202,
+          "successful_ops_per_second": 544.3340301420922,
+          "p50_ms": 12.844534999658208,
+          "p95_ms": 28.44155899992984,
+          "p99_ms": 34.917917999791825,
+          "loadgen_cpu_cores": 0.9217055344637937,
+          "possible_client_bottleneck": true
+        },
+        "small": {
+          "requested": 400,
+          "successful": 400,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.24920935599993754,
+          "successful_ops_per_second": 1605.076175390864,
+          "p50_ms": 2.0367199999782315,
+          "p95_ms": 5.64997699984815,
+          "p99_ms": 8.847493999837752,
+          "loadgen_cpu_cores": 1.0418455838394196,
+          "possible_client_bottleneck": true
+        },
+        "large": {
+          "requested": 400,
+          "successful": 400,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.2486874109999917,
+          "successful_ops_per_second": 1608.4449083754116,
+          "p50_ms": 1.9925139999941166,
+          "p95_ms": 5.528758999844285,
+          "p99_ms": 8.700393000253825,
+          "loadgen_cpu_cores": 1.0033613965284662,
+          "possible_client_bottleneck": true
+        }
+      },
+      "read_rps": 644.1964967630333,
+      "lifecycle_ops_per_sec": 544.3340301420922,
+      "read_p95_ms": 25.70120800010045,
+      "read_p50_ms": 6.275887999890983,
+      "read_p99_ms": 149.33892399994875,
+      "lifecycle_p95_ms": 28.44155899992984,
+      "growth_ratio": 0.978545399387091,
+      "peak_rss_bytes": 87285760,
+      "java_cpu_seconds": 7.93,
+      "possible_client_bottleneck": true
+    },
+    {
+      "index": 2,
+      "status": "measured",
+      "phases": {
+        "read": {
+          "requested": 1000,
+          "successful": 1000,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.6432970020000539,
+          "successful_ops_per_second": 1554.491932794545,
+          "p50_ms": 4.24856900008308,
+          "p95_ms": 10.589844999685738,
+          "p99_ms": 14.083909999953903,
+          "loadgen_cpu_cores": 0.9770832400054424,
+          "possible_client_bottleneck": true
+        },
+        "lifecycle": {
+          "requested": 160,
+          "successful": 160,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.2854321830000117,
+          "successful_ops_per_second": 560.553467791659,
+          "p50_ms": 11.41909800026042,
+          "p95_ms": 25.197738999850117,
+          "p99_ms": 29.626552000081574,
+          "loadgen_cpu_cores": 0.8199545213862236,
+          "possible_client_bottleneck": false
+        },
+        "small": {
+          "requested": 400,
+          "successful": 400,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.3010862000000998,
+          "successful_ops_per_second": 1328.523193689606,
+          "p50_ms": 2.161458000045968,
+          "p95_ms": 7.631764000052499,
+          "p99_ms": 10.846960999970179,
+          "loadgen_cpu_cores": 0.9039277356448443,
+          "possible_client_bottleneck": true
+        },
+        "large": {
+          "requested": 400,
+          "successful": 400,
+          "errors": 0,
+          "error_samples": [],
+          "elapsed_seconds": 0.2616959560000396,
+          "successful_ops_per_second": 1528.491330603288,
+          "p50_ms": 1.820745000259194,
+          "p95_ms": 7.111691999853065,
+          "p99_ms": 10.828249000041978,
+          "loadgen_cpu_cores": 0.9170112242772396,
+          "possible_client_bottleneck": true
+        }
+      },
+      "read_rps": 1554.491932794545,
+      "lifecycle_ops_per_sec": 560.553467791659,
+      "read_p95_ms": 10.589844999685738,
+      "read_p50_ms": 4.24856900008308,
+      "read_p99_ms": 14.083909999953903,
+      "lifecycle_p95_ms": 25.197738999850117,
+      "growth_ratio": 0.9318542868731454,
+      "peak_rss_bytes": 98705408,
+      "java_cpu_seconds": 5.6499999999999995,
+      "possible_client_bottleneck": true
+    }
+  ],
+  "summary": {
+    "read_rps": 1157.9831944470527,
+    "lifecycle_ops_per_sec": 560.553467791659,
+    "read_p95_ms": 13.34705799990843,
+    "read_p50_ms": 4.494590999911452,
+    "read_p99_ms": 25.612895999984175,
+    "lifecycle_p95_ms": 25.197738999850117,
+    "growth_ratio": 0.978545399387091,
+    "peak_rss_bytes": 98705408,
+    "java_cpu_seconds": 6.24
+  },
+  "possible_client_bottleneck": true
+}

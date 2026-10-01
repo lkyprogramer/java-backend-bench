@@ -1,0 +1,9 @@
+{
+  "id": "C10",
+  "dimension": "D05",
+  "title": "并发逻辑时钟增量不丢失",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

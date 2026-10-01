@@ -1,0 +1,19 @@
+{
+  "returncode": 0,
+  "timeout": false,
+  "output": "",
+  "command": [
+    "javac",
+    "-encoding",
+    "UTF-8",
+    "--release",
+    "17",
+    "-d",
+    "/mnt/data/java-backend-bench-v1.0.0/reports/validation/reference-build",
+    "/mnt/data/java-backend-bench-v1.0.0/reference/src/app/Main.java",
+    "/mnt/data/java-backend-bench-v1.0.0/reference/src/app/Service.java",
+    "/mnt/data/java-backend-bench-v1.0.0/candidate/src/benchkit/Journal.java",
+    "/mnt/data/java-backend-bench-v1.0.0/candidate/src/benchkit/Json.java"
+  ],
+  "class_sha256": "1d00473407e91b8bd88268ab3e66ae25101d356c7d9154f2799fa1bdf9f977bf"
+}

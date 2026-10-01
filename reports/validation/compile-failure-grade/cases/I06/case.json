@@ -1,0 +1,9 @@
+{
+  "id": "I06",
+  "dimension": "D04",
+  "title": "确认之后重试返回当前终态",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

@@ -1,0 +1,9 @@
+{
+  "id": "C09",
+  "dimension": "D05",
+  "title": "并发同键异参返回一致赢家",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.344487
+}

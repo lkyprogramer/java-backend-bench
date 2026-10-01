@@ -1,0 +1,9 @@
+{
+  "id": "V02",
+  "dimension": "D03",
+  "title": "数量类型、零、上限与溢出",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

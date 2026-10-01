@@ -1,0 +1,68 @@
+{
+  "index": 1,
+  "status": "measured",
+  "phases": {
+    "read": {
+      "requested": 1000,
+      "successful": 1000,
+      "errors": 0,
+      "error_samples": [],
+      "elapsed_seconds": 0.7039609809999092,
+      "successful_ops_per_second": 1420.5332781081072,
+      "p50_ms": 4.265526999915892,
+      "p95_ms": 10.552736000136065,
+      "p99_ms": 18.23178899985578,
+      "loadgen_cpu_cores": 1.0228461568668858,
+      "possible_client_bottleneck": true
+    },
+    "lifecycle": {
+      "requested": 160,
+      "successful": 160,
+      "errors": 0,
+      "error_samples": [],
+      "elapsed_seconds": 0.20306106099997123,
+      "successful_ops_per_second": 787.9403328835294,
+      "p50_ms": 8.887397000307828,
+      "p95_ms": 18.546416999924986,
+      "p99_ms": 29.252069999984087,
+      "loadgen_cpu_cores": 0.8747269078832663,
+      "possible_client_bottleneck": true
+    },
+    "small": {
+      "requested": 400,
+      "successful": 400,
+      "errors": 0,
+      "error_samples": [],
+      "elapsed_seconds": 0.2624017969997112,
+      "successful_ops_per_second": 1524.3798044585808,
+      "p50_ms": 2.0087249999960477,
+      "p95_ms": 5.855464999967808,
+      "p99_ms": 9.662056999786728,
+      "loadgen_cpu_cores": 1.0356942143970873,
+      "possible_client_bottleneck": true
+    },
+    "large": {
+      "requested": 400,
+      "successful": 400,
+      "errors": 0,
+      "error_samples": [],
+      "elapsed_seconds": 0.19341723800016553,
+      "successful_ops_per_second": 2068.067997122664,
+      "p50_ms": 1.6044510002757306,
+      "p95_ms": 3.801675999966392,
+      "p99_ms": 6.249893000131124,
+      "loadgen_cpu_cores": 1.0901664514505158,
+      "possible_client_bottleneck": true
+    }
+  },
+  "read_rps": 1420.5332781081072,
+  "lifecycle_ops_per_sec": 787.9403328835294,
+  "read_p95_ms": 10.552736000136065,
+  "read_p50_ms": 4.265526999915892,
+  "read_p99_ms": 18.23178899985578,
+  "lifecycle_p95_ms": 18.546416999924986,
+  "growth_ratio": 0.6492526212670202,
+  "peak_rss_bytes": 97984512,
+  "java_cpu_seconds": 4.36,
+  "possible_client_bottleneck": true
+}

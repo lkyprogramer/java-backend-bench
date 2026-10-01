@@ -1,0 +1,5 @@
+{
+  "case": "C07",
+  "status": "pass",
+  "reason": "Correctly check returned advance object and all reserve status codes."
+}

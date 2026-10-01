@@ -1,0 +1,9 @@
+{
+  "id": "B05",
+  "dimension": "D01",
+  "title": "健康检查与正确 JSON 类型",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.240231
+}

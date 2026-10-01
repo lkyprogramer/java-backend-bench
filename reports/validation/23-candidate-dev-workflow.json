@@ -1,0 +1,10 @@
+{
+  "smoke": {
+    "returncode": 0,
+    "output": "PUBLIC_SMOKE_PASS: examples passed; hidden acceptance is broader.\n\n"
+  },
+  "test": {
+    "returncode": 0,
+    "output": "\n..........\n----------------------------------------------------------------------\nRan 10 tests in 0.166s\n\nOK\n"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "C04",
+  "dimension": "D05",
+  "title": "重复并发取消只释放一次",
+  "critical": true,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

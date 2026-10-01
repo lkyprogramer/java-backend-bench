@@ -1,0 +1,9 @@
+{
+  "id": "T04",
+  "dimension": "D07",
+  "title": "终态非法转换与重复终态操作",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

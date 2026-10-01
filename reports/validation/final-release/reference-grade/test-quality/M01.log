@@ -1,0 +1,35 @@
+F.....F...
+======================================================================
+FAIL: test_batch_rollback (__main__.ContractTests.test_batch_rollback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 33, in test_batch_rollback
+    item('m8a',10);item('m8b',1);reserve('m8',[('m8a',2),('m8b',2)],status=409);self.assertEqual(stock('m8a')['available'],10)
+                                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 14, in reserve
+    def reserve(key,ls,ttl=10000,status=201):return request('POST','/v1/reservations',{'requestId':key,'lines':[{'sku':s,'quantity':q}for s,q in ls],'ttlMillis':ttl},status)
+                                                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 10, in request
+    r=conn.getresponse();value=json.loads(r.read());assert r.status==status,(status,r.status,value);return value
+                                                           ^^^^^^^^^^^^^^^^
+AssertionError: (409, 201, {'id': '1', 'requestId': 'm8', 'state': 'ACTIVE', 'createdAt': 1700000000000, 'expiresAt': 1700000010000, 'lines': [{'sku': 'm8a', 'quantity': 2}, {'sku': 'm8b', 'quantity': 2}]})
+
+======================================================================
+FAIL: test_no_oversell (__main__.ContractTests.test_no_oversell)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 19, in test_no_oversell
+    item('m1',1);reserve('m1',[('m1',2)],status=409);self.assertEqual(stock('m1')['available'],1)
+                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 14, in reserve
+    def reserve(key,ls,ttl=10000,status=201):return request('POST','/v1/reservations',{'requestId':key,'lines':[{'sku':s,'quantity':q}for s,q in ls],'ttlMillis':ttl},status)
+                                                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 10, in request
+    r=conn.getresponse();value=json.loads(r.read());assert r.status==status,(status,r.status,value);return value
+                                                           ^^^^^^^^^^^^^^^^
+AssertionError: (409, 201, {'id': '7', 'requestId': 'm1', 'state': 'ACTIVE', 'createdAt': 1700000000001, 'expiresAt': 1700000010001, 'lines': [{'sku': 'm1', 'quantity': 2}]})
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.232s
+
+FAILED (failures=2)

@@ -1,0 +1,9 @@
+{
+  "id": "R06",
+  "dimension": "D06",
+  "title": "日志创建失败不污染内存",
+  "critical": true,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 1.5846
+}

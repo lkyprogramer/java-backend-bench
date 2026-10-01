@@ -1,0 +1,5 @@
+READY 51481
+Exception in thread "main" java.io.IOException: Data directory is locked
+	at benchkit.Journal.<init>(Journal.java:28)
+	at app.Service.<init>(Service.java:36)
+	at app.Main.main(Main.java:29)

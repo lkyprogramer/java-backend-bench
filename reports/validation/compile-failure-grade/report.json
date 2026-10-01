@@ -1,0 +1,846 @@
+{
+  "schema_version": "1.0",
+  "benchmark": "ReserveLedger",
+  "benchmark_version": "1.0.0",
+  "run_id": "compile-failure-control",
+  "model_label": "NEGATIVE-CONTROL-NOT-A-MODEL",
+  "timestamp_utc": "2026-09-30T13:54:42.505063+00:00",
+  "seed": 1701,
+  "submission_sha256": "9b9bb8732cbdc8975eecf60bcc4c29a0f53288ae0a82d1f3a15a536871dece7e",
+  "java_source_sha256": "f8afce13b07fa4b3f8a20b2aaa1df3cca99fada2186dfbeb8953d963a2c01a5b",
+  "judge_sha256": "599b6d2be535a74055e5a8289aac9dd24785f13233113b9e0e1bc80fb35de54b",
+  "metadata": {
+    "model": {
+      "served_model_id": "SYNTHETIC-COMPILE-FAILURE",
+      "quantization": "not-applicable"
+    },
+    "protocol": {
+      "id": "harness-selftest-only"
+    },
+    "generation": {
+      "outcome": "deliberately-invalid-control"
+    }
+  },
+  "environment": {
+    "os": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "logical_cpus": 5,
+    "java": "openjdk version \"21.0.11\" 2026-04-21\nOpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode, sharing)",
+    "javac": "javac 21.0.11",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "java_flags": [
+      "-Xms32m",
+      "-Xmx256m",
+      "-XX:ActiveProcessorCount=2",
+      "--add-modules",
+      "jdk.httpserver"
+    ],
+    "hostname": "bd6f70dc5df2",
+    "fingerprint": "7d582e96d6212a668097136da7e97f0bd65c2e335302ea1e22fcfb610c2adcb5"
+  },
+  "manual_review": null,
+  "build": {
+    "returncode": 1,
+    "timeout": false,
+    "output": "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: illegal start of type\npackage app; public class Main { this is not Java; }\n                                 ^\n/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: ';' expected\npackage app; public class Main { this is not Java; }\n                                     ^\n/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: ';' expected\npackage app; public class Main { this is not Java; }\n                                            ^\n/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: <identifier> expected\npackage app; public class Main { this is not Java; }\n                                                 ^\n4 errors\n",
+    "command": [
+      "javac",
+      "-encoding",
+      "UTF-8",
+      "--release",
+      "17",
+      "-d",
+      "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/classes",
+      "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java",
+      "/mnt/data/java-backend-bench-v1.0.0/candidate/src/benchkit/Journal.java",
+      "/mnt/data/java-backend-bench-v1.0.0/candidate/src/benchkit/Json.java"
+    ],
+    "class_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "preflight": {
+    "build_ok": false,
+    "health_ok": false,
+    "message": "not attempted"
+  },
+  "cases": [
+    {
+      "id": "B01",
+      "dimension": "D01",
+      "title": "源码布局与禁止符号链接",
+      "critical": false,
+      "status": "pass",
+      "message": "ok",
+      "seconds": 0.001143
+    },
+    {
+      "id": "B02",
+      "dimension": "D01",
+      "title": "冻结辅助类保持不变",
+      "critical": false,
+      "status": "pass",
+      "message": "ok",
+      "seconds": 0.000538
+    },
+    {
+      "id": "B03",
+      "dimension": "D01",
+      "title": "使用 Java 17 目标从源码干净编译",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B04",
+      "dimension": "D01",
+      "title": "第二次干净编译产物一致",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B05",
+      "dimension": "D01",
+      "title": "健康检查与正确 JSON 类型",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B06",
+      "dimension": "D01",
+      "title": "自定义端口、含空格数据路径可用",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B07",
+      "dimension": "D01",
+      "title": "系统时钟模式禁用测试接口",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B08",
+      "dimension": "D01",
+      "title": "同一数据目录互斥与失败退出",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B09",
+      "dimension": "D01",
+      "title": "不同数据目录相互隔离",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "B10",
+      "dimension": "D01",
+      "title": "交付自测入口与工程说明文件",
+      "critical": false,
+      "status": "pass",
+      "message": "ok",
+      "seconds": 0.000136
+    },
+    {
+      "id": "F01",
+      "dimension": "D02",
+      "title": "创建与查询库存",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F02",
+      "dimension": "D02",
+      "title": "单 SKU 预占与返回结构",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F03",
+      "dimension": "D02",
+      "title": "确认预占转为已售",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F04",
+      "dimension": "D02",
+      "title": "取消预占释放库存",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F05",
+      "dimension": "D02",
+      "title": "多个 SKU 成功并统一排序",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F06",
+      "dimension": "D02",
+      "title": "跨 SKU 失败全回滚",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F07",
+      "dimension": "D02",
+      "title": "重复创建不能覆盖原库存",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F08",
+      "dimension": "D02",
+      "title": "不存在的资源返回 404",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F09",
+      "dimension": "D02",
+      "title": "游标分页无重复无遗漏",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "F10",
+      "dimension": "D02",
+      "title": "统计数据与真实终态一致",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V01",
+      "dimension": "D03",
+      "title": "SKU 格式、长度、路径边界",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V02",
+      "dimension": "D03",
+      "title": "数量类型、零、上限与溢出",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V03",
+      "dimension": "D03",
+      "title": "明细空数组、重复项、20 项上限",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V04",
+      "dimension": "D03",
+      "title": "TTL 的类型、上下界",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V05",
+      "dimension": "D03",
+      "title": "JSON 语法、重复键、字段完整性",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V06",
+      "dimension": "D03",
+      "title": "分页参数非法、重复与未知参数",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V07",
+      "dimension": "D03",
+      "title": "HTTP 方法与精确路由匹配",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V08",
+      "dimension": "D03",
+      "title": "Content-Type 拒绝与容忍 charset",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V09",
+      "dimension": "D03",
+      "title": "请求体上限、嵌套深度与非法 UTF-8",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "V10",
+      "dimension": "D03",
+      "title": "测试令牌与错误响应不泄露内部信息",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I01",
+      "dimension": "D04",
+      "title": "相同请求不重复扣减",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I02",
+      "dimension": "D04",
+      "title": "等价明细顺序与 JSON 字段顺序",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I03",
+      "dimension": "D04",
+      "title": "同键异参冲突",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I04",
+      "dimension": "D04",
+      "title": "库存不足失败不占用幂等键",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I05",
+      "dimension": "D04",
+      "title": "资源不存在失败不占用幂等键",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I06",
+      "dimension": "D04",
+      "title": "确认之后重试返回当前终态",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I07",
+      "dimension": "D04",
+      "title": "取消和过期之后重试不重新激活",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I08",
+      "dimension": "D04",
+      "title": "重启后幂等索引恢复",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I09",
+      "dimension": "D04",
+      "title": "请求键格式、长度与大小写语义",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "I10",
+      "dimension": "D04",
+      "title": "重试不续期、不改变创建时间",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C01",
+      "dimension": "D05",
+      "title": "竞争同一库存不超卖",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C02",
+      "dimension": "D05",
+      "title": "并发相同幂等键只创建一次",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C03",
+      "dimension": "D05",
+      "title": "逆序多 SKU 加锁与原子守恒",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C04",
+      "dimension": "D05",
+      "title": "重复并发取消只释放一次",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C05",
+      "dimension": "D05",
+      "title": "重复并发确认只扣账一次",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C06",
+      "dimension": "D05",
+      "title": "确认与取消竞争只有一个终态",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C07",
+      "dimension": "D05",
+      "title": "到期释放与新预占并发守恒",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C08",
+      "dimension": "D05",
+      "title": "独立商品并发操作与终态统计",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C09",
+      "dimension": "D05",
+      "title": "并发同键异参返回一致赢家",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "C10",
+      "dimension": "D05",
+      "title": "并发逻辑时钟增量不丢失",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R01",
+      "dimension": "D06",
+      "title": "正常重启保留库存",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R02",
+      "dimension": "D06",
+      "title": "硬终止后恢复完整业务状态",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R03",
+      "dimension": "D06",
+      "title": "已应答写入紧接硬终止不丢失",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R04",
+      "dimension": "D06",
+      "title": "硬终止后重试键与终态恢复",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R05",
+      "dimension": "D06",
+      "title": "逻辑时钟与 ID 分配跨重启单调",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R06",
+      "dimension": "D06",
+      "title": "日志创建失败不污染内存",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R07",
+      "dimension": "D06",
+      "title": "预占落盘失败可安全原键重试",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R08",
+      "dimension": "D06",
+      "title": "确认与取消落盘失败保留原状态",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R09",
+      "dimension": "D06",
+      "title": "尾部不完整帧恢复并可继续追加",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "R10",
+      "dimension": "D06",
+      "title": "完整帧校验失败拒绝静默丢数据",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T01",
+      "dimension": "D07",
+      "title": "到期前一毫秒与恰好到期边界",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T02",
+      "dimension": "D07",
+      "title": "最小与最大 TTL 精度",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T03",
+      "dimension": "D07",
+      "title": "已过期不能确认或复活",
+      "critical": true,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T04",
+      "dimension": "D07",
+      "title": "终态非法转换与重复终态操作",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T05",
+      "dimension": "D07",
+      "title": "已确认记录不再过期",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T06",
+      "dimension": "D07",
+      "title": "已取消记录不重复释放",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T07",
+      "dimension": "D07",
+      "title": "乱序与相同到期时刻",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T08",
+      "dimension": "D07",
+      "title": "释放的库存可以立即重新预占",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T09",
+      "dimension": "D07",
+      "title": "分页过滤与统计反映到期状态",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "T10",
+      "dimension": "D07",
+      "title": "时钟输入约束与零增量",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O01",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 1（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O02",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 2（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O03",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 3（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O04",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 4（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O05",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 5（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O06",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 6（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O07",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 7（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O08",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 8（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O09",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 9（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    },
+    {
+      "id": "O10",
+      "dimension": "D08",
+      "title": "独立状态机随机序列 10（120 步，含硬重启）",
+      "critical": false,
+      "status": "not_run",
+      "message": "build prerequisite failed; counted as zero",
+      "seconds": 0
+    }
+  ],
+  "performance": {
+    "score_10": 0,
+    "status": "not_run",
+    "reason": "build/startup prerequisite failed"
+  },
+  "test_quality": {
+    "score_10": 0,
+    "status": "not_run",
+    "reason": "build/startup prerequisite failed"
+  },
+  "summary": {
+    "dimensions": {
+      "D01": 3.0,
+      "D02": 0.0,
+      "D03": 0.0,
+      "D04": 0.0,
+      "D05": 0.0,
+      "D06": 0.0,
+      "D07": 0.0,
+      "D08": 0.0,
+      "D09": 0.0,
+      "D10": 0.0
+    },
+    "raw_overall_10": 0.3,
+    "overall_10": 0.0,
+    "critical_failures": [
+      "F06",
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "R02",
+      "R03",
+      "R04",
+      "R06",
+      "R07",
+      "R08",
+      "R10",
+      "T03"
+    ],
+    "gate": "NOT_BUILDABLE",
+    "official_overall_10": 0.0,
+    "extended_overall_10": null
+  },
+  "validity": {
+    "complete_profile": true,
+    "diagnostic": false,
+    "integrity_ok": true,
+    "infrastructure_errors": [],
+    "rankable": true,
+    "model_identity_is_operator_declared": true,
+    "security_sandbox": false
+  },
+  "evaluation_seconds": 7.5252095450000525,
+  "warnings": []
+}

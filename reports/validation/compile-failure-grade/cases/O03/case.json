@@ -1,0 +1,9 @@
+{
+  "id": "O03",
+  "dimension": "D08",
+  "title": "独立状态机随机序列 3（120 步，含硬重启）",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

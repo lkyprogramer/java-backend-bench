@@ -1,0 +1,2 @@
+﻿model_label,run_id,overall_10,read_rps,lifecycle_ops_per_sec,read_p95_ms,read_p50_ms,read_p99_ms,lifecycle_p95_ms,growth_ratio,peak_rss_bytes,java_cpu_seconds
+REFERENCE-SELF-CHECK-NOT-A-MODEL,reference-validation,9.9504,1157.9831944470527,560.553467791659,13.34705799990843,4.494590999911452,25.612895999984175,25.197738999850117,0.978545399387091,98705408,6.24

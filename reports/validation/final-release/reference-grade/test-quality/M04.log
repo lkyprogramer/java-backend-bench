@@ -1,0 +1,17 @@
+....F.....
+======================================================================
+FAIL: test_expiry_boundary (__main__.ContractTests.test_expiry_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 25, in test_expiry_boundary
+    item('m4',2);a=reserve('m4',[('m4',1)],ttl=1);request('POST','/__test__/advance',{'millis':1});self.assertEqual(request('GET','/v1/reservations/'+a['id'])['state'],'EXPIRED');self.assertEqual(stock('m4')['available'],2)
+                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ACTIVE' != 'EXPIRED'
+- ACTIVE
++ EXPIRED
+
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.133s
+
+FAILED (failures=1)

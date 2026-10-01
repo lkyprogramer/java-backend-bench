@@ -1,0 +1,44 @@
+test_ascii_integers_keep_integer_type (test_benchkit.SuppliedJsonTests.test_ascii_integers_keep_integer_type) ... ok
+test_decimal_lexemes_remain_distinct (test_benchkit.SuppliedJsonTests.test_decimal_lexemes_remain_distinct) ... ok
+test_duplicate_object_keys_rejected (test_benchkit.SuppliedJsonTests.test_duplicate_object_keys_rejected) ... ok
+test_non_ascii_digits_rejected (test_benchkit.SuppliedJsonTests.test_non_ascii_digits_rejected) ... ok
+test_non_ascii_escape_hex_rejected (test_benchkit.SuppliedJsonTests.test_non_ascii_escape_hex_rejected) ... ok
+test_array_length_and_order_remain_strict (test_contract_matching.ContractMatchingTests.test_array_length_and_order_remain_strict) ... ok
+test_extra_nested_fields_are_allowed (test_contract_matching.ContractMatchingTests.test_extra_nested_fields_are_allowed) ... ok
+test_extra_response_fields_are_allowed (test_contract_matching.ContractMatchingTests.test_extra_response_fields_are_allowed) ... ok
+test_json_number_output_type_is_enforced (test_contract_matching.ContractMatchingTests.test_json_number_output_type_is_enforced) ... ok
+test_missing_required_response_field_fails (test_contract_matching.ContractMatchingTests.test_missing_required_response_field_fails) ... ok
+test_generation_seed_does_not_split_same_configuration (test_orchestration.AggregateTests.test_generation_seed_does_not_split_same_configuration) ... ok
+test_keeps_valid_zero_failures_excludes_infrastructure (test_orchestration.AggregateTests.test_keeps_valid_zero_failures_excludes_infrastructure) ... ok
+test_repeated_source_does_not_claim_generation_ci (test_orchestration.AggregateTests.test_repeated_source_does_not_claim_generation_ci) ... ok
+test_splits_same_label_with_different_hardware (test_orchestration.AggregateTests.test_splits_same_label_with_different_hardware) ... ok
+test_splits_same_label_with_different_model_quantization (test_orchestration.AggregateTests.test_splits_same_label_with_different_model_quantization) ... ok
+test_success_output_and_returncode (test_orchestration.ProcessTests.test_success_output_and_returncode) ... ok
+test_timeout_kills_child_before_delayed_file_write (test_orchestration.ProcessTests.test_timeout_kills_child_before_delayed_file_write) ... ok
+test_requires_evidence_and_exact_score_types (test_orchestration.ReviewTests.test_requires_evidence_and_exact_score_types) ... ok
+test_ignores_runtime_data_but_preserves_source_package_data (test_orchestration.SnapshotTests.test_ignores_runtime_data_but_preserves_source_package_data) ... ok
+test_refuses_nested_output (test_orchestration.SnapshotTests.test_refuses_nested_output) ... ok
+test_refuses_symlink (test_orchestration.SnapshotTests.test_refuses_symlink) ... ok
+test_errors_do_not_count_as_fast (test_perf.PerformanceTests.test_errors_do_not_count_as_fast) ... ok
+test_hardware_mismatch_is_not_comparable (test_perf.PerformanceTests.test_hardware_mismatch_is_not_comparable) ... ok
+test_identical_reference_is_ten (test_perf.PerformanceTests.test_identical_reference_is_ten) ... ok
+test_missing_data_not_silently_ignored (test_perf.PerformanceTests.test_missing_data_not_silently_ignored) ... ok
+test_missing_memory_invalidates_metric (test_perf.PerformanceTests.test_missing_memory_invalidates_metric) ... ok
+test_nearest_rank (test_perf.PerformanceTests.test_nearest_rank) ... ok
+test_repetition_mismatch (test_perf.PerformanceTests.test_repetition_mismatch) ... ok
+test_all_pass_is_ten (test_scoring.ScoringTests.test_all_pass_is_ten) ... ok
+test_build_failure_zeroes_deliverability (test_scoring.ScoringTests.test_build_failure_zeroes_deliverability) ... ok
+test_empty_is_zero_not_perfect (test_scoring.ScoringTests.test_empty_is_zero_not_perfect) ... ok
+test_missing_and_timeout_remain_in_denominator (test_scoring.ScoringTests.test_missing_and_timeout_remain_in_denominator) ... ok
+test_missing_dimensions_are_zero (test_scoring.ScoringTests.test_missing_dimensions_are_zero) ... ok
+test_overall_mean_and_critical_cap (test_scoring.ScoringTests.test_overall_mean_and_critical_cap) ... ok
+test_relative_scores_are_bounded (test_scoring.ScoringTests.test_relative_scores_are_bounded) ... ok
+test_entrypoints_help (test_tools.ToolsTests.test_entrypoints_help) ... ok
+test_timing_records_only_observed_values (test_tools.ToolsTests.test_timing_records_only_observed_values) ... ok
+test_timing_refuses_unconfirmed_execution (test_tools.ToolsTests.test_timing_refuses_unconfirmed_execution) ... ok
+test_timing_timeout_retains_evidence (test_tools.ToolsTests.test_timing_timeout_retains_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 11.340s
+
+OK

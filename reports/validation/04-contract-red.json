@@ -1,0 +1,10 @@
+{
+  "id": "F02",
+  "dimension": "D02",
+  "title": "单 SKU 预占与返回结构",
+  "critical": false,
+  "status": "fail",
+  "message": "POST /v1/items: expected 201, got 501: {'error': {'code': 'NOT_IMPLEMENTED', 'message': 'Implement the task'}}",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/worker.py\", line 10, in main\n    try:case['fn'](ctx);row.update(status='pass',message='ok')\n        ~~~~~~~~~~^^^^^\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/cases.py\", line 99, in f02\n    c=s.client;c.item();r=reservation_view(c.reserve(lines=lines(('A',4))))\n               ~~~~~~^^\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/runtime.py\", line 98, in item\n    def item(self,sku='A',quantity=100):return self.expect('POST','/v1/items',{'sku':sku,'quantity':quantity},201)\n                                               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/runtime.py\", line 91, in expect\n    check(s==status,f'{method} {path}: expected {status}, got {s}: {d}')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/runtime.py\", line 13, in check\n    if not condition: raise CheckFailure(message)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\njudge.runtime.CheckFailure: POST /v1/items: expected 201, got 501: {'error': {'code': 'NOT_IMPLEMENTED', 'message': 'Implement the task'}}\n",
+  "seconds": 0.946319
+}

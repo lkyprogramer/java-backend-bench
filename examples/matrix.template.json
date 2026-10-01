@@ -1,0 +1,21 @@
+{
+  "calibration": "../results/calibration/calibration.json",
+  "runs": [
+    {
+      "workspace": "../work/qwen27b-r1",
+      "out": "../results/qwen27b-r1",
+      "model_label": "Qwen3.8-27B-local",
+      "run_id": "qwen27b-r1",
+      "seed": 1701,
+      "metadata": "../records/qwen27b-r1.json"
+    },
+    {
+      "workspace": "../work/qwen-next-r1",
+      "out": "../results/qwen-next-r1",
+      "model_label": "Qwen3.8-Next-local",
+      "run_id": "qwen-next-r1",
+      "seed": 1701,
+      "metadata": "../records/qwen-next-r1.json"
+    }
+  ]
+}

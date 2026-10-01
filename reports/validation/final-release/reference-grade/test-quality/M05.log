@@ -1,0 +1,25 @@
+.F........
+======================================================================
+FAIL: test_cancel_once (__main__.ContractTests.test_cancel_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 27, in test_cancel_once
+    item('m5',10);a=reserve('m5',[('m5',3)]);act(a,'cancel');act(a,'cancel');s=stock('m5');self.assertEqual((s['available'],s['held'],s['sold']),(10,0,0))
+                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (13, -3, 0) != (10, 0, 0)
+
+First differing element 0:
+13
+10
+
+- (13, -3, 0)
+?   ^  ^^
+
++ (10, 0, 0)
+?   ^  ^
+
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.135s
+
+FAILED (failures=1)

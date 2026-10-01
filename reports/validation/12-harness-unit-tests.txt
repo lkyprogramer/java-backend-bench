@@ -1,0 +1,19 @@
+test_errors_do_not_count_as_fast (test_perf.PerformanceTests.test_errors_do_not_count_as_fast) ... ok
+test_hardware_mismatch_is_not_comparable (test_perf.PerformanceTests.test_hardware_mismatch_is_not_comparable) ... ok
+test_identical_reference_is_ten (test_perf.PerformanceTests.test_identical_reference_is_ten) ... ok
+test_missing_data_not_silently_ignored (test_perf.PerformanceTests.test_missing_data_not_silently_ignored) ... ok
+test_missing_memory_invalidates_metric (test_perf.PerformanceTests.test_missing_memory_invalidates_metric) ... ok
+test_nearest_rank (test_perf.PerformanceTests.test_nearest_rank) ... ok
+test_repetition_mismatch (test_perf.PerformanceTests.test_repetition_mismatch) ... ok
+test_all_pass_is_ten (test_scoring.ScoringTests.test_all_pass_is_ten) ... ok
+test_build_failure_zeroes_deliverability (test_scoring.ScoringTests.test_build_failure_zeroes_deliverability) ... ok
+test_empty_is_zero_not_perfect (test_scoring.ScoringTests.test_empty_is_zero_not_perfect) ... ok
+test_missing_and_timeout_remain_in_denominator (test_scoring.ScoringTests.test_missing_and_timeout_remain_in_denominator) ... ok
+test_missing_dimensions_are_zero (test_scoring.ScoringTests.test_missing_dimensions_are_zero) ... ok
+test_overall_mean_and_critical_cap (test_scoring.ScoringTests.test_overall_mean_and_critical_cap) ... ok
+test_relative_scores_are_bounded (test_scoring.ScoringTests.test_relative_scores_are_bounded) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.001s
+
+OK

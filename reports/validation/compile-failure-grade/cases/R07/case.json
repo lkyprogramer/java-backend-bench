@@ -1,0 +1,9 @@
+{
+  "id": "R07",
+  "dimension": "D06",
+  "title": "预占落盘失败可安全原键重试",
+  "critical": true,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

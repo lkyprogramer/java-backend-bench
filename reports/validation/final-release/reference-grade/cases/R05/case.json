@@ -1,0 +1,9 @@
+{
+  "id": "R05",
+  "dimension": "D06",
+  "title": "逻辑时钟与 ID 分配跨重启单调",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 1.042765
+}

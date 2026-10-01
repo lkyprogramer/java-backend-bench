@@ -1,0 +1,9 @@
+{
+  "id": "V09",
+  "dimension": "D03",
+  "title": "请求体上限、嵌套深度与非法 UTF-8",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

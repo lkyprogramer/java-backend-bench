@@ -1,0 +1,21 @@
+..F.......
+======================================================================
+FAIL: test_confirm_sells (__main__.ContractTests.test_confirm_sells)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 29, in test_confirm_sells
+    item('m6',10);a=reserve('m6',[('m6',3)]);act(a,'confirm');s=stock('m6');self.assertEqual((s['available'],s['held'],s['sold']),(7,0,3))
+                                                                            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (10, 0, 3) != (7, 0, 3)
+
+First differing element 0:
+10
+7
+
+- (10, 0, 3)
++ (7, 0, 3)
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.151s
+
+FAILED (failures=1)

@@ -1,0 +1,38 @@
+{
+  "python_files": [
+    "bench.py",
+    "tests/test_orchestration.py",
+    "tests/test_perf.py",
+    "tests/test_tools.py",
+    "tests/test_contract_matching.py",
+    "tests/test_scoring.py",
+    "tests/test_benchkit.py",
+    "tools/run_matrix.py",
+    "tools/validate.py",
+    "tools/time_agent.py",
+    "candidate/dev.py",
+    "judge/scoring.py",
+    "judge/runtime.py",
+    "judge/cases.py",
+    "judge/__init__.py",
+    "judge/mutation.py",
+    "judge/runner.py",
+    "judge/aggregate.py",
+    "judge/worker.py",
+    "judge/perf.py",
+    "reference/tests/candidate_tests.py",
+    "candidate/tests/public_smoke.py",
+    "candidate/tests/candidate_tests.py"
+  ],
+  "syntax_errors": [],
+  "pending_at_audit": [
+    {
+      "file": "README.md",
+      "target": "reports/validation/VALIDATION.md"
+    },
+    {
+      "file": "README.md",
+      "target": "reports/validation/VALIDATION.md"
+    }
+  ]
+}

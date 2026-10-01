@@ -1,0 +1,9 @@
+{
+  "id": "R10",
+  "dimension": "D06",
+  "title": "完整帧校验失败拒绝静默丢数据",
+  "critical": true,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.37364
+}

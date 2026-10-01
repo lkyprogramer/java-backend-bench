@@ -1,0 +1,9 @@
+{
+  "id": "B05",
+  "dimension": "D01",
+  "title": "健康检查与正确 JSON 类型",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "python_3_10_plus": true,
+    "jdk_17_plus": true,
+    "posix_process_groups": true,
+    "rss_sampler": true,
+    "loopback_bind": true,
+    "local_file_fsync": true
+  },
+  "ready": true,
+  "environment": {
+    "os": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "logical_cpus": 5,
+    "java": "openjdk version \"21.0.11\" 2026-04-21\nOpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode, sharing)",
+    "javac": "javac 21.0.11",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "java_flags": [
+      "-Xms32m",
+      "-Xmx256m",
+      "-XX:ActiveProcessorCount=2",
+      "--add-modules",
+      "jdk.httpserver"
+    ],
+    "hostname": "bd6f70dc5df2",
+    "fingerprint": "7d582e96d6212a668097136da7e97f0bd65c2e335302ea1e22fcfb610c2adcb5"
+  },
+  "note": "This is an environment probe, not a security sandbox or performance calibration."
+}

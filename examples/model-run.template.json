@@ -1,0 +1,53 @@
+{
+  "model": {
+    "served_model_id": "REPLACE_WITH_ACTUAL_ID",
+    "checkpoint_or_repo": "REPLACE_WITH_EXACT_ARTIFACT",
+    "weights_sha256": null,
+    "quantization": "REPLACE_WITH_QUANTIZATION",
+    "inference_backend": "REPLACE_WITH_BACKEND",
+    "backend_version": "REPLACE_WITH_VERSION",
+    "context_window": null,
+    "reasoning_setting": null,
+    "temperature": null,
+    "top_p": null,
+    "generation_seed": null
+  },
+  "protocol": {
+    "id": "reserveledger-180m-v1",
+    "agent": "REPLACE_WITH_AGENT",
+    "agent_version": "REPLACE_WITH_VERSION",
+    "budget_seconds": 10800,
+    "system_prompt_sha256": null,
+    "allowed_tools": [
+      "read",
+      "edit",
+      "shell"
+    ],
+    "network_allowed": false,
+    "delegation_allowed": false,
+    "context_plugins": "RECORD_EXACT_VERSIONS_AND_SWITCHES",
+    "feedback_policy": "public-smoke-and-own-tests-only"
+  },
+  "generation": {
+    "generation_id": "REPLACE_WITH_UNIQUE_ID",
+    "started_at_utc": null,
+    "finished_at_utc": null,
+    "human_interventions": 0,
+    "outcome": "completed_or_budget_exhausted"
+  },
+  "generation_metrics": {
+    "wall_seconds": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cached_input_tokens": null,
+    "tool_calls": null,
+    "cost_currency": null,
+    "cost_amount": null,
+    "source": "unknown_until_measured"
+  },
+  "hardware": {
+    "model_generation_gpu": null,
+    "model_generation_ram_gib": null,
+    "notes": null
+  }
+}

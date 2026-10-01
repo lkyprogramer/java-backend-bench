@@ -1,0 +1,9 @@
+{
+  "id": "V01",
+  "dimension": "D03",
+  "title": "SKU 格式、长度、路径边界",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.254991
+}

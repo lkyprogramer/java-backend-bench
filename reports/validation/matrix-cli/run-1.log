@@ -1,0 +1,82 @@
+B01 pass: 源码布局与禁止符号链接
+B02 pass: 冻结辅助类保持不变
+B03 not_run: 使用 Java 17 目标从源码干净编译
+B04 not_run: 第二次干净编译产物一致
+B05 not_run: 健康检查与正确 JSON 类型
+B06 not_run: 自定义端口、含空格数据路径可用
+B07 not_run: 系统时钟模式禁用测试接口
+B08 not_run: 同一数据目录互斥与失败退出
+B09 not_run: 不同数据目录相互隔离
+B10 pass: 交付自测入口与工程说明文件
+F01 not_run: 创建与查询库存
+F02 not_run: 单 SKU 预占与返回结构
+F03 not_run: 确认预占转为已售
+F04 not_run: 取消预占释放库存
+F05 not_run: 多个 SKU 成功并统一排序
+F06 not_run: 跨 SKU 失败全回滚
+F07 not_run: 重复创建不能覆盖原库存
+F08 not_run: 不存在的资源返回 404
+F09 not_run: 游标分页无重复无遗漏
+F10 not_run: 统计数据与真实终态一致
+V01 not_run: SKU 格式、长度、路径边界
+V02 not_run: 数量类型、零、上限与溢出
+V03 not_run: 明细空数组、重复项、20 项上限
+V04 not_run: TTL 的类型、上下界
+V05 not_run: JSON 语法、重复键、字段完整性
+V06 not_run: 分页参数非法、重复与未知参数
+V07 not_run: HTTP 方法与精确路由匹配
+V08 not_run: Content-Type 拒绝与容忍 charset
+V09 not_run: 请求体上限、嵌套深度与非法 UTF-8
+V10 not_run: 测试令牌与错误响应不泄露内部信息
+I01 not_run: 相同请求不重复扣减
+I02 not_run: 等价明细顺序与 JSON 字段顺序
+I03 not_run: 同键异参冲突
+I04 not_run: 库存不足失败不占用幂等键
+I05 not_run: 资源不存在失败不占用幂等键
+I06 not_run: 确认之后重试返回当前终态
+I07 not_run: 取消和过期之后重试不重新激活
+I08 not_run: 重启后幂等索引恢复
+I09 not_run: 请求键格式、长度与大小写语义
+I10 not_run: 重试不续期、不改变创建时间
+C01 not_run: 竞争同一库存不超卖
+C02 not_run: 并发相同幂等键只创建一次
+C03 not_run: 逆序多 SKU 加锁与原子守恒
+C04 not_run: 重复并发取消只释放一次
+C05 not_run: 重复并发确认只扣账一次
+C06 not_run: 确认与取消竞争只有一个终态
+C07 not_run: 到期释放与新预占并发守恒
+C08 not_run: 独立商品并发操作与终态统计
+C09 not_run: 并发同键异参返回一致赢家
+C10 not_run: 并发逻辑时钟增量不丢失
+R01 not_run: 正常重启保留库存
+R02 not_run: 硬终止后恢复完整业务状态
+R03 not_run: 已应答写入紧接硬终止不丢失
+R04 not_run: 硬终止后重试键与终态恢复
+R05 not_run: 逻辑时钟与 ID 分配跨重启单调
+R06 not_run: 日志创建失败不污染内存
+R07 not_run: 预占落盘失败可安全原键重试
+R08 not_run: 确认与取消落盘失败保留原状态
+R09 not_run: 尾部不完整帧恢复并可继续追加
+R10 not_run: 完整帧校验失败拒绝静默丢数据
+T01 not_run: 到期前一毫秒与恰好到期边界
+T02 not_run: 最小与最大 TTL 精度
+T03 not_run: 已过期不能确认或复活
+T04 not_run: 终态非法转换与重复终态操作
+T05 not_run: 已确认记录不再过期
+T06 not_run: 已取消记录不重复释放
+T07 not_run: 乱序与相同到期时刻
+T08 not_run: 释放的库存可以立即重新预占
+T09 not_run: 分页过滤与统计反映到期状态
+T10 not_run: 时钟输入约束与零增量
+O01 not_run: 独立状态机随机序列 1（120 步，含硬重启）
+O02 not_run: 独立状态机随机序列 2（120 步，含硬重启）
+O03 not_run: 独立状态机随机序列 3（120 步，含硬重启）
+O04 not_run: 独立状态机随机序列 4（120 步，含硬重启）
+O05 not_run: 独立状态机随机序列 5（120 步，含硬重启）
+O06 not_run: 独立状态机随机序列 6（120 步，含硬重启）
+O07 not_run: 独立状态机随机序列 7（120 步，含硬重启）
+O08 not_run: 独立状态机随机序列 8（120 步，含硬重启）
+O09 not_run: 独立状态机随机序列 9（120 步，含硬重启）
+O10 not_run: 独立状态机随机序列 10（120 步，含硬重启）
+Report: /mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/report.md
+{"dimensions": {"D01": 3.0, "D02": 0.0, "D03": 0.0, "D04": 0.0, "D05": 0.0, "D06": 0.0, "D07": 0.0, "D08": 0.0, "D09": 0.0, "D10": 0.0}, "raw_overall_10": 0.3, "overall_10": 0.0, "critical_failures": ["F06", "C01", "C02", "C03", "C04", "C05", "C06", "C07", "R02", "R03", "R04", "R06", "R07", "R08", "R10", "T03"], "gate": "NOT_BUILDABLE", "official_overall_10": 0.0, "extended_overall_10": null}

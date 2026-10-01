@@ -1,0 +1,58 @@
+{
+  "reviewer": "REPLACE_WITH_REVIEWER",
+  "reviewed_at_utc": null,
+  "H01": [
+    {
+      "criterion": "不变量与状态表达",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "职责与接口边界",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "同步与持久化顺序",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "时间与恢复边界",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "复杂度与适度设计",
+      "score": null,
+      "evidence": ""
+    }
+  ],
+  "H02": [
+    {
+      "criterion": "启动步骤可执行",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "设计与代码一致",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "测试证据可复查",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "限制与未测项诚实",
+      "score": null,
+      "evidence": ""
+    },
+    {
+      "criterion": "参数与数据操作说明",
+      "score": null,
+      "evidence": ""
+    }
+  ]
+}

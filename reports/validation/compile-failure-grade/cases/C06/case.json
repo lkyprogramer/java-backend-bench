@@ -1,0 +1,9 @@
+{
+  "id": "C06",
+  "dimension": "D05",
+  "title": "确认与取消竞争只有一个终态",
+  "critical": true,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

@@ -1,0 +1,9 @@
+{
+  "id": "F07",
+  "dimension": "D02",
+  "title": "重复创建不能覆盖原库存",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

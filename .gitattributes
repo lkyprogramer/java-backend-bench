@@ -1,0 +1,2 @@
+# Keep bytes exactly as released so `python3 bench.py verify` (SHA256SUMS.json) passes on any clone.
+* -text

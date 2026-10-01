@@ -1,0 +1,81 @@
+﻿id,dimension,title,critical,status,seconds,message
+B01,D01,源码布局与禁止符号链接,False,pass,0.001143,ok
+B02,D01,冻结辅助类保持不变,False,pass,0.000538,ok
+B03,D01,使用 Java 17 目标从源码干净编译,False,not_run,0,build prerequisite failed; counted as zero
+B04,D01,第二次干净编译产物一致,False,not_run,0,build prerequisite failed; counted as zero
+B05,D01,健康检查与正确 JSON 类型,False,not_run,0,build prerequisite failed; counted as zero
+B06,D01,自定义端口、含空格数据路径可用,False,not_run,0,build prerequisite failed; counted as zero
+B07,D01,系统时钟模式禁用测试接口,False,not_run,0,build prerequisite failed; counted as zero
+B08,D01,同一数据目录互斥与失败退出,False,not_run,0,build prerequisite failed; counted as zero
+B09,D01,不同数据目录相互隔离,False,not_run,0,build prerequisite failed; counted as zero
+B10,D01,交付自测入口与工程说明文件,False,pass,0.000136,ok
+F01,D02,创建与查询库存,False,not_run,0,build prerequisite failed; counted as zero
+F02,D02,单 SKU 预占与返回结构,False,not_run,0,build prerequisite failed; counted as zero
+F03,D02,确认预占转为已售,False,not_run,0,build prerequisite failed; counted as zero
+F04,D02,取消预占释放库存,False,not_run,0,build prerequisite failed; counted as zero
+F05,D02,多个 SKU 成功并统一排序,False,not_run,0,build prerequisite failed; counted as zero
+F06,D02,跨 SKU 失败全回滚,True,not_run,0,build prerequisite failed; counted as zero
+F07,D02,重复创建不能覆盖原库存,False,not_run,0,build prerequisite failed; counted as zero
+F08,D02,不存在的资源返回 404,False,not_run,0,build prerequisite failed; counted as zero
+F09,D02,游标分页无重复无遗漏,False,not_run,0,build prerequisite failed; counted as zero
+F10,D02,统计数据与真实终态一致,False,not_run,0,build prerequisite failed; counted as zero
+V01,D03,SKU 格式、长度、路径边界,False,not_run,0,build prerequisite failed; counted as zero
+V02,D03,数量类型、零、上限与溢出,False,not_run,0,build prerequisite failed; counted as zero
+V03,D03,明细空数组、重复项、20 项上限,False,not_run,0,build prerequisite failed; counted as zero
+V04,D03,TTL 的类型、上下界,False,not_run,0,build prerequisite failed; counted as zero
+V05,D03,JSON 语法、重复键、字段完整性,False,not_run,0,build prerequisite failed; counted as zero
+V06,D03,分页参数非法、重复与未知参数,False,not_run,0,build prerequisite failed; counted as zero
+V07,D03,HTTP 方法与精确路由匹配,False,not_run,0,build prerequisite failed; counted as zero
+V08,D03,Content-Type 拒绝与容忍 charset,False,not_run,0,build prerequisite failed; counted as zero
+V09,D03,请求体上限、嵌套深度与非法 UTF-8,False,not_run,0,build prerequisite failed; counted as zero
+V10,D03,测试令牌与错误响应不泄露内部信息,False,not_run,0,build prerequisite failed; counted as zero
+I01,D04,相同请求不重复扣减,False,not_run,0,build prerequisite failed; counted as zero
+I02,D04,等价明细顺序与 JSON 字段顺序,False,not_run,0,build prerequisite failed; counted as zero
+I03,D04,同键异参冲突,False,not_run,0,build prerequisite failed; counted as zero
+I04,D04,库存不足失败不占用幂等键,False,not_run,0,build prerequisite failed; counted as zero
+I05,D04,资源不存在失败不占用幂等键,False,not_run,0,build prerequisite failed; counted as zero
+I06,D04,确认之后重试返回当前终态,False,not_run,0,build prerequisite failed; counted as zero
+I07,D04,取消和过期之后重试不重新激活,False,not_run,0,build prerequisite failed; counted as zero
+I08,D04,重启后幂等索引恢复,False,not_run,0,build prerequisite failed; counted as zero
+I09,D04,请求键格式、长度与大小写语义,False,not_run,0,build prerequisite failed; counted as zero
+I10,D04,重试不续期、不改变创建时间,False,not_run,0,build prerequisite failed; counted as zero
+C01,D05,竞争同一库存不超卖,True,not_run,0,build prerequisite failed; counted as zero
+C02,D05,并发相同幂等键只创建一次,True,not_run,0,build prerequisite failed; counted as zero
+C03,D05,逆序多 SKU 加锁与原子守恒,True,not_run,0,build prerequisite failed; counted as zero
+C04,D05,重复并发取消只释放一次,True,not_run,0,build prerequisite failed; counted as zero
+C05,D05,重复并发确认只扣账一次,True,not_run,0,build prerequisite failed; counted as zero
+C06,D05,确认与取消竞争只有一个终态,True,not_run,0,build prerequisite failed; counted as zero
+C07,D05,到期释放与新预占并发守恒,True,not_run,0,build prerequisite failed; counted as zero
+C08,D05,独立商品并发操作与终态统计,False,not_run,0,build prerequisite failed; counted as zero
+C09,D05,并发同键异参返回一致赢家,False,not_run,0,build prerequisite failed; counted as zero
+C10,D05,并发逻辑时钟增量不丢失,False,not_run,0,build prerequisite failed; counted as zero
+R01,D06,正常重启保留库存,False,not_run,0,build prerequisite failed; counted as zero
+R02,D06,硬终止后恢复完整业务状态,True,not_run,0,build prerequisite failed; counted as zero
+R03,D06,已应答写入紧接硬终止不丢失,True,not_run,0,build prerequisite failed; counted as zero
+R04,D06,硬终止后重试键与终态恢复,True,not_run,0,build prerequisite failed; counted as zero
+R05,D06,逻辑时钟与 ID 分配跨重启单调,False,not_run,0,build prerequisite failed; counted as zero
+R06,D06,日志创建失败不污染内存,True,not_run,0,build prerequisite failed; counted as zero
+R07,D06,预占落盘失败可安全原键重试,True,not_run,0,build prerequisite failed; counted as zero
+R08,D06,确认与取消落盘失败保留原状态,True,not_run,0,build prerequisite failed; counted as zero
+R09,D06,尾部不完整帧恢复并可继续追加,False,not_run,0,build prerequisite failed; counted as zero
+R10,D06,完整帧校验失败拒绝静默丢数据,True,not_run,0,build prerequisite failed; counted as zero
+T01,D07,到期前一毫秒与恰好到期边界,False,not_run,0,build prerequisite failed; counted as zero
+T02,D07,最小与最大 TTL 精度,False,not_run,0,build prerequisite failed; counted as zero
+T03,D07,已过期不能确认或复活,True,not_run,0,build prerequisite failed; counted as zero
+T04,D07,终态非法转换与重复终态操作,False,not_run,0,build prerequisite failed; counted as zero
+T05,D07,已确认记录不再过期,False,not_run,0,build prerequisite failed; counted as zero
+T06,D07,已取消记录不重复释放,False,not_run,0,build prerequisite failed; counted as zero
+T07,D07,乱序与相同到期时刻,False,not_run,0,build prerequisite failed; counted as zero
+T08,D07,释放的库存可以立即重新预占,False,not_run,0,build prerequisite failed; counted as zero
+T09,D07,分页过滤与统计反映到期状态,False,not_run,0,build prerequisite failed; counted as zero
+T10,D07,时钟输入约束与零增量,False,not_run,0,build prerequisite failed; counted as zero
+O01,D08,独立状态机随机序列 1（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O02,D08,独立状态机随机序列 2（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O03,D08,独立状态机随机序列 3（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O04,D08,独立状态机随机序列 4（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O05,D08,独立状态机随机序列 5（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O06,D08,独立状态机随机序列 6（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O07,D08,独立状态机随机序列 7（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O08,D08,独立状态机随机序列 8（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O09,D08,独立状态机随机序列 9（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero
+O10,D08,独立状态机随机序列 10（120 步，含硬重启）,False,not_run,0,build prerequisite failed; counted as zero

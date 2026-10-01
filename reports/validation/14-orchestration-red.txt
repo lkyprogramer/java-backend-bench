@@ -1,0 +1,52 @@
+test_generation_seed_does_not_split_same_configuration (test_orchestration.AggregateTests.test_generation_seed_does_not_split_same_configuration) ... ok
+test_keeps_valid_zero_failures_excludes_infrastructure (test_orchestration.AggregateTests.test_keeps_valid_zero_failures_excludes_infrastructure) ... ok
+test_repeated_source_does_not_claim_generation_ci (test_orchestration.AggregateTests.test_repeated_source_does_not_claim_generation_ci) ... FAIL
+test_splits_same_label_with_different_hardware (test_orchestration.AggregateTests.test_splits_same_label_with_different_hardware) ... FAIL
+test_splits_same_label_with_different_model_quantization (test_orchestration.AggregateTests.test_splits_same_label_with_different_model_quantization) ... FAIL
+test_success_output_and_returncode (test_orchestration.ProcessTests.test_success_output_and_returncode) ... ok
+test_timeout_kills_child_before_delayed_file_write (test_orchestration.ProcessTests.test_timeout_kills_child_before_delayed_file_write) ... ok
+test_requires_evidence_and_exact_score_types (test_orchestration.ReviewTests.test_requires_evidence_and_exact_score_types) ... ok
+test_ignores_runtime_data_but_preserves_source_package_data (test_orchestration.SnapshotTests.test_ignores_runtime_data_but_preserves_source_package_data) ... FAIL
+test_refuses_nested_output (test_orchestration.SnapshotTests.test_refuses_nested_output) ... ok
+test_refuses_symlink (test_orchestration.SnapshotTests.test_refuses_symlink) ... ok
+
+======================================================================
+FAIL: test_repeated_source_does_not_claim_generation_ci (test_orchestration.AggregateTests.test_repeated_source_does_not_claim_generation_ci)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_orchestration.py", line 73, in test_repeated_source_does_not_claim_generation_ci
+    r=self.compare([fixture(),fixture(),fixture()]);self.assertIsNone(r['groups'][0]['bootstrap_mean_ci95'])
+                                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [8, 8] is not None
+
+======================================================================
+FAIL: test_splits_same_label_with_different_hardware (test_orchestration.AggregateTests.test_splits_same_label_with_different_hardware)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_orchestration.py", line 63, in test_splits_same_label_with_different_hardware
+    r=self.compare([fixture(),fixture(hardware='cpu2')]);self.assertEqual(2,len(r['groups']));self.assertFalse(r['cross_group_conditions_identical'])
+                                                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_splits_same_label_with_different_model_quantization (test_orchestration.AggregateTests.test_splits_same_label_with_different_model_quantization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_orchestration.py", line 65, in test_splits_same_label_with_different_model_quantization
+    r=self.compare([fixture(),fixture(quant='Q8')]);self.assertEqual(2,len(r['groups']))
+                                                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_ignores_runtime_data_but_preserves_source_package_data (test_orchestration.SnapshotTests.test_ignores_runtime_data_but_preserves_source_package_data)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/tests/test_orchestration.py", line 14, in test_ignores_runtime_data_but_preserves_source_package_data
+    self.assertTrue((base/'snapshot/src/data/A.java').exists())
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 11 tests in 2.252s
+
+FAILED (failures=4)

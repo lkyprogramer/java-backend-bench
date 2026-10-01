@@ -1,0 +1,10 @@
+{
+  "prepared_file_count": 12,
+  "candidate_isolated_from_private_files": true,
+  "matrix_exitcode": 1,
+  "compile_failure_rankable": true,
+  "official_score_10": 0,
+  "fixed_scheduled_cases": 80,
+  "not_run_counted_as_zero": 77,
+  "note": "Deliberately invalid synthetic control; not a model submission."
+}

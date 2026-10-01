@@ -1,0 +1,9 @@
+{
+  "id": "O08",
+  "dimension": "D08",
+  "title": "独立状态机随机序列 8（120 步，含硬重启）",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 1.269036
+}

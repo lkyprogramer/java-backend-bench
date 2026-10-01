@@ -1,0 +1,9 @@
+{
+  "id": "I04",
+  "dimension": "D04",
+  "title": "库存不足失败不占用幂等键",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

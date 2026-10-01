@@ -1,0 +1,9 @@
+{
+  "id": "F01",
+  "dimension": "D02",
+  "title": "创建与查询库存",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

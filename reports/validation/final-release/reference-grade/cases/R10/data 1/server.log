@@ -1,0 +1,6 @@
+READY 42455
+Exception in thread "main" java.io.IOException: Corrupt journal checksum
+	at benchkit.Journal.readFrames(Journal.java:47)
+	at benchkit.Journal.<init>(Journal.java:35)
+	at app.Service.<init>(Service.java:36)
+	at app.Main.main(Main.java:29)

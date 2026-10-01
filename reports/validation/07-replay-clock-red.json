@@ -1,0 +1,11 @@
+{
+  "status": "expected-failure",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 7, in <module>\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/cases.py\", line 23, in stock\n    if v is not None:eq(d[k],v,k)\n                     ~~^^^^^^^^^^\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/cases.py\", line 16, in eq\n    check(actual==expected,f'{message}: expected {expected!r}, got {actual!r}')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/java-backend-bench-v1.0.0/judge/runtime.py\", line 13, in check\n    if not condition: raise CheckFailure(message)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\njudge.runtime.CheckFailure: available: expected 2, got 3\n",
+  "actual": {
+    "sku": "A",
+    "total": 3,
+    "available": 3,
+    "held": -1,
+    "sold": 1
+  }
+}

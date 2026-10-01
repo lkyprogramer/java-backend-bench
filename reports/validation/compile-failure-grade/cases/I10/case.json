@@ -1,0 +1,9 @@
+{
+  "id": "I10",
+  "dimension": "D04",
+  "title": "重试不续期、不改变创建时间",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

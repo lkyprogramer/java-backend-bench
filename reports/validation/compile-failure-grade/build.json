@@ -1,0 +1,18 @@
+{
+  "returncode": 1,
+  "timeout": false,
+  "output": "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: illegal start of type\npackage app; public class Main { this is not Java; }\n                                 ^\n/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: ';' expected\npackage app; public class Main { this is not Java; }\n                                     ^\n/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: ';' expected\npackage app; public class Main { this is not Java; }\n                                            ^\n/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java:1: error: <identifier> expected\npackage app; public class Main { this is not Java; }\n                                                 ^\n4 errors\n",
+  "command": [
+    "javac",
+    "-encoding",
+    "UTF-8",
+    "--release",
+    "17",
+    "-d",
+    "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/classes",
+    "/mnt/data/java-backend-bench-v1.0.0/reports/validation/compile-failure-grade/submission/src/app/Main.java",
+    "/mnt/data/java-backend-bench-v1.0.0/candidate/src/benchkit/Journal.java",
+    "/mnt/data/java-backend-bench-v1.0.0/candidate/src/benchkit/Json.java"
+  ],
+  "class_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

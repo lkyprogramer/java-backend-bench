@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "unit_tests": true,
+    "reference_80_cases": true,
+    "reference_complete": true,
+    "reference_test_quality": true,
+    "reference_performance": true,
+    "mutants_killed": true,
+    "health_only_zero": true,
+    "always_failing_zero": true
+  },
+  "passed": true,
+  "note": "Tests the benchmark harness and reference only. No Qwen or other model generation performed."
+}

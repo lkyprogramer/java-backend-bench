@@ -1,0 +1,9 @@
+{
+  "id": "B04",
+  "dimension": "D01",
+  "title": "第二次干净编译产物一致",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

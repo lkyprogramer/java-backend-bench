@@ -1,0 +1,9 @@
+{
+  "id": "B03",
+  "dimension": "D01",
+  "title": "使用 Java 17 目标从源码干净编译",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

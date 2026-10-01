@@ -1,0 +1,27 @@
+# Evaluation outputs (grading runs, model submissions, calibration data)
+output/
+results/
+work/
+
+# Release archives: build the candidate kit locally (see README)
+dist/
+*.zip
+
+# Java / Python build artifacts
+build/
+*.class
+*.jar
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Runtime data created by local service runs
+data/
+events.log
+*.lock
+
+# Editor / OS / agent local state
+.DS_Store
+.idea/
+.vscode/
+.claude/

@@ -1,0 +1,57 @@
+[
+  {
+    "case": "F02",
+    "status": "pass",
+    "seconds": 0.6021600319999152
+  },
+  {
+    "case": "F06",
+    "status": "pass",
+    "seconds": 0.7319279590000178
+  },
+  {
+    "case": "I01",
+    "status": "pass",
+    "seconds": 0.9561748769999667
+  },
+  {
+    "case": "I03",
+    "status": "pass",
+    "seconds": 0.6411134969999921
+  },
+  {
+    "case": "C01",
+    "status": "pass",
+    "seconds": 0.9956736000000319
+  },
+  {
+    "case": "C06",
+    "status": "pass",
+    "seconds": 0.7256125049999582
+  },
+  {
+    "case": "R02",
+    "status": "pass",
+    "seconds": 1.290302661999931
+  },
+  {
+    "case": "R07",
+    "status": "pass",
+    "seconds": 1.8169875830000137
+  },
+  {
+    "case": "R09",
+    "status": "pass",
+    "seconds": 3.3019554789999574
+  },
+  {
+    "case": "T01",
+    "status": "pass",
+    "seconds": 0.3436196850000215
+  },
+  {
+    "case": "O01",
+    "status": "pass",
+    "seconds": 1.7791151180000497
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "V07",
+  "dimension": "D03",
+  "title": "HTTP 方法与精确路由匹配",
+  "critical": false,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.220372
+}

@@ -1,0 +1,9 @@
+{
+  "id": "T08",
+  "dimension": "D07",
+  "title": "释放的库存可以立即重新预占",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

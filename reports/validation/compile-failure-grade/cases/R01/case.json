@@ -1,0 +1,9 @@
+{
+  "id": "R01",
+  "dimension": "D06",
+  "title": "正常重启保留库存",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

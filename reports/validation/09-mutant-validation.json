@@ -1,0 +1,62 @@
+[
+  {
+    "id": "M01",
+    "killed": true,
+    "killer": "C01",
+    "message": ": expected 7, got 32"
+  },
+  {
+    "id": "M02",
+    "killed": true,
+    "killer": "I01",
+    "message": "POST /v1/reservations: expected 200, got 201: {'id': '2', 'requestId': 'one', 'state': 'ACTIVE', 'createdAt': 1700000000000, 'expiresAt': 1700000010000, 'lines': [{'sku': 'A', 'quantity': 3}]}"
+  },
+  {
+    "id": "M03",
+    "killed": true,
+    "killer": "I03",
+    "message": "POST /v1/reservations: expected 409, got 200: {'id': '1', 'requestId': 'same', 'state': 'ACTIVE', 'createdAt': 1700000000000, 'expiresAt': 1700000010000, 'lines': [{'sku': 'A', 'quantity': 1}]}"
+  },
+  {
+    "id": "M04",
+    "killed": true,
+    "killer": "T01",
+    "message": ": expected 'EXPIRED', got 'ACTIVE'"
+  },
+  {
+    "id": "M05",
+    "killed": true,
+    "killer": "C04",
+    "message": "available: expected 100, got 261"
+  },
+  {
+    "id": "M06",
+    "killed": true,
+    "killer": "F03",
+    "message": "available: expected 96, got 100"
+  },
+  {
+    "id": "M07",
+    "killed": true,
+    "killer": "T04",
+    "message": "POST /v1/reservations/1/confirm: expected 409, got 200: {'id': '1', 'requestId': 'a', 'state': 'CONFIRMED', 'createdAt': 1700000000000, 'expiresAt': 1700000010000, 'lines': [{'sku': 'A', 'quantity': 1}]}"
+  },
+  {
+    "id": "M08",
+    "killed": true,
+    "killer": "F06",
+    "message": "available: expected 8, got 5"
+  },
+  {
+    "id": "M09",
+    "killed": true,
+    "killer": "V02",
+    "message": "POST /v1/reservations: expected 400, got 201: {'id': '1', 'requestId': 'bad', 'state': 'ACTIVE', 'createdAt': 1700000000000, 'expiresAt': 1700000010000, 'lines': [{'sku': 'A', 'quantity': 0}]}"
+  },
+  {
+    "id": "M10",
+    "killed": true,
+    "killer": "F09",
+    "message": ": expected ['2'], got ['1']"
+  }
+]

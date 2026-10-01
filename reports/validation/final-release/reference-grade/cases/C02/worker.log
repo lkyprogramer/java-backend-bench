@@ -1,0 +1,1 @@
+{"id": "C02", "dimension": "D05", "title": "并发相同幂等键只创建一次", "critical": true, "status": "pass", "message": "ok", "seconds": 0.311376}

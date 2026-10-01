@@ -1,0 +1,20 @@
+........F.
+======================================================================
+FAIL: test_terminal_transition (__main__.ContractTests.test_terminal_transition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 31, in test_terminal_transition
+    item('m7',10);a=reserve('m7',[('m7',1)]);act(a,'cancel');act(a,'confirm',409)
+                                                             ~~~^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 15, in act
+    def act(r,action,status=200):return request('POST',f'/v1/reservations/{r["id"]}/{action}',{},status)
+                                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/java-backend-bench-v1.0.0/reports/validation/final-release/reference-grade/test-quality/isolated-tests/candidate_tests.py", line 10, in request
+    r=conn.getresponse();value=json.loads(r.read());assert r.status==status,(status,r.status,value);return value
+                                                           ^^^^^^^^^^^^^^^^
+AssertionError: (409, 200, {'id': '8', 'requestId': 'm7', 'state': 'CONFIRMED', 'createdAt': 1700000000001, 'expiresAt': 1700000010001, 'lines': [{'sku': 'm7', 'quantity': 1}]})
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.123s
+
+FAILED (failures=1)

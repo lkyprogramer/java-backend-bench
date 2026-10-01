@@ -1,0 +1,9 @@
+{
+  "id": "C08",
+  "dimension": "D05",
+  "title": "独立商品并发操作与终态统计",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

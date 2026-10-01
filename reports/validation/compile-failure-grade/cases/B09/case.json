@@ -1,0 +1,9 @@
+{
+  "id": "B09",
+  "dimension": "D01",
+  "title": "不同数据目录相互隔离",
+  "critical": false,
+  "status": "not_run",
+  "message": "build prerequisite failed; counted as zero",
+  "seconds": 0
+}

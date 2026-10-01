@@ -1,0 +1,9 @@
+{
+  "id": "R02",
+  "dimension": "D06",
+  "title": "硬终止后恢复完整业务状态",
+  "critical": true,
+  "status": "pass",
+  "message": "ok",
+  "seconds": 0.709488
+}
