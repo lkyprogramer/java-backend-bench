@@ -25,3 +25,6 @@ events.log
 .idea/
 .vscode/
 .claude/
+
+# Maven build output (track t1-spring)
+target/

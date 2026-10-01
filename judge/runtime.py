@@ -6,6 +6,16 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 JAVA_FLAGS=['-Xms32m','-Xmx256m','-XX:ActiveProcessorCount=2','--add-modules','jdk.httpserver']
 NOW=1700000000000
+# Selected once per judge process (worker/perf/mutation take --track); 'base' is the original JDK-only task.
+TRACK={'name':'base'}
+def use_track(name):
+    if name not in ('base','t1-spring'):raise ValueError('unknown track: '+str(name))
+    TRACK['name']=name
+def start_timeout():
+    if TRACK['name']=='t1-spring':
+        from .spring import START_TIMEOUT
+        return START_TIMEOUT
+    return 6
 
 class CheckFailure(AssertionError): pass
 
@@ -23,8 +33,13 @@ def matches(actual, expected):
         return isinstance(actual,type(expected)) and len(actual)==len(expected) and all(matches(a,b)for a,b in zip(actual,expected))
     return type(actual)is type(expected) and actual==expected
 
+def t1_repo():
+    """Offline Maven repository of track t1-spring, resolved before HOME is replaced for child processes."""
+    return Path(os.environ.get('BENCH_T1_M2',Path.home()/'.cache/java-backend-bench/t1-spring-m2')).expanduser()
+
 def minimal_env(home:Path, extra=None):
     env={k:os.environ[k] for k in ('PATH','JAVA_HOME','SYSTEMROOT','WINDIR','TMPDIR','TEMP') if k in os.environ}
+    env['BENCH_T1_M2']=str(t1_repo())
     env.update({'HOME':str(home),'LANG':'C.UTF-8','LC_ALL':'C.UTF-8','PYTHONIOENCODING':'utf-8','PYTHONDONTWRITEBYTECODE':'1'})
     env.update(extra or {})
     return env
@@ -123,14 +138,19 @@ class Server:
         self.client=Client(self.port,self.token)
         atexit.register(self.stop)
     def spawn(self):
-        cmd=['java']+JAVA_FLAGS+['-cp',str(self.classes.resolve()),'app.Main','--port',str(self.port),'--data-dir',str(self.directory.resolve()),'--clock','manual' if self.manual else 'system']
-        if self.manual:cmd+=['--now',str(self.now)]
+        launch_env={}
+        if TRACK['name']=='t1-spring':
+            from .spring import command
+            cmd,launch_env=command(self)
+        else:
+            cmd=['java']+JAVA_FLAGS+['-cp',str(self.classes.resolve()),'app.Main','--port',str(self.port),'--data-dir',str(self.directory.resolve()),'--clock','manual' if self.manual else 'system']
+            if self.manual:cmd+=['--now',str(self.now)]
         self.log=open(self.directory/'server.log','ab')
         # Inherit the worker process group: the parent judge can kill every descendant.
-        self.proc=subprocess.Popen(cmd,cwd=self.directory,env=minimal_env(self.directory,{'BENCH_TEST_TOKEN':self.token,**self.extra}),stdout=self.log,stderr=subprocess.STDOUT)
+        self.proc=subprocess.Popen(cmd,cwd=self.directory,env=minimal_env(self.directory,{'BENCH_TEST_TOKEN':self.token,**launch_env,**self.extra}),stdout=self.log,stderr=subprocess.STDOUT)
         return self
-    def start(self,timeout=6):
-        self.spawn();deadline=time.monotonic()+timeout
+    def start(self,timeout=None):
+        self.spawn();deadline=time.monotonic()+(timeout or start_timeout())
         while time.monotonic()<deadline:
             if self.proc.poll() is not None:break
             try:
@@ -159,10 +179,11 @@ class Server:
     def expect_start_failure(self):
         self.spawn()
         try:
-            rc=self.proc.wait(timeout=3)
+            limit=3 if TRACK['name']=='base' else start_timeout()
+            rc=self.proc.wait(timeout=limit)
             check(rc!=0,'invalid startup must exit nonzero')
         except subprocess.TimeoutExpired as e:
-            raise CheckFailure('invalid startup did not fail within 3 seconds') from e
+            raise CheckFailure(f'invalid startup did not fail within {limit} seconds') from e
         finally:self.stop()
     def __enter__(self):return self.start()
     def __exit__(self,*args):self.stop()

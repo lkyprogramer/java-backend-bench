@@ -1,24 +1,24 @@
 """Trusted orchestration, immutable source snapshot, and machine-readable reports."""
 from __future__ import annotations
-import csv,datetime,hashlib,json,os,platform,re,shutil,sys,time,xml.etree.ElementTree as ET
+import csv,datetime,hashlib,json,os,platform,re,shutil,subprocess,sys,time,xml.etree.ElementTree as ET
 from pathlib import Path
-from .runtime import ROOT,Context,Server,build,digest_tree,environment,frozen_ok,minimal_env,rss_bytes,run_limited
-from .cases import CASES
+from .runtime import ROOT,Context,Server,digest_tree,environment,minimal_env,rss_bytes,run_limited,use_track
+from .tracks import track as get_track
 from .scoring import DIMENSIONS,case_score,summarize
 from .perf import PROFILE_HASH,compare
 
 VERSION=(ROOT/'VERSION').read_text().strip()
-EXCLUDES={'build','.git','__pycache__','.pytest_cache','.DS_Store','data','.idea','.vscode'}
+EXCLUDES={'build','.git','__pycache__','.pytest_cache','.DS_Store','data','.idea','.vscode','target','.mvn'}
 
 def write_json(path,obj):
     Path(path).write_text(json.dumps(obj,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
 
-def trusted_hash():
-    h=hashlib.sha256()
+def trusted_hash(track_name='base'):
+    t=get_track(track_name);h=hashlib.sha256()
     paths=[]
-    for directory in ('judge','reference/src','reference/tests','candidate/src','candidate/docs'):
-        paths += [p for p in (ROOT/directory).rglob('*')if p.is_file()and p.suffix in ('.py','.java','.md','.json')]
-    paths += [p for p in [ROOT/'VERSION',ROOT/'candidate/TASK.md',ROOT/'candidate/AGENTS.md']if p.exists()]
+    for directory in t.trusted:
+        paths += [p for p in (ROOT/directory).rglob('*')if p.is_file()and p.suffix in ('.py','.java','.md','.json','.xml','.sql','.properties','.imports')]
+    paths += [p for p in [ROOT/'VERSION',t.root/'candidate/TASK.md',t.root/'candidate/AGENTS.md']if p.exists()]
     for p in sorted(paths):h.update(str(p.relative_to(ROOT)).encode());h.update(b'\0');h.update(p.read_bytes());h.update(b'\0')
     return h.hexdigest()
 
@@ -56,7 +56,7 @@ def failure_clusters(rows):
         if r['status']!='pass':groups.setdefault(failure_signature(r.get('message','')),[]).append(r['id'])
     return [{'signature':k,'count':len(v),'cases':v}for k,v in sorted(groups.items(),key=lambda kv:(-len(kv[1]),kv[1][0]))]
 
-def doctor():
+def doctor(track_name='base'):
     env=environment();checks={}
     checks['python_3_10_plus']=sys.version_info>=(3,10)
     match=re.search(r'javac\s+(\d+)',env['javac']);checks['jdk_17_plus']=bool(match and int(match.group(1))>=17)
@@ -69,12 +69,20 @@ def doctor():
     try:
         with tempfile.TemporaryFile()as f:f.write(b'test');f.flush();os.fsync(f.fileno());checks['local_file_fsync']=True
     except OSError:checks['local_file_fsync']=False
+    if track_name=='t1-spring':
+        from .spring import m2_repo
+        checks['jdk_21_plus']=bool(match and int(match.group(1))>=21)
+        try:mv=subprocess.run(['mvn','-v'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=30).stdout
+        except (OSError,subprocess.SubprocessError):mv=''
+        m=re.search(r'Apache Maven (\d+)\.(\d+)',mv);checks['maven_3_9_plus']=bool(m and (int(m.group(1)),int(m.group(2)))>=(3,9))
+        checks['offline_repository']=(m2_repo()/'org/springframework/boot/spring-boot/3.5.16').is_dir()
+        env['t1_offline_repository']=str(m2_repo())
     return {'checks':checks,'ready':all(checks.values()),'environment':env,'note':'This is an environment probe, not a security sandbox or performance calibration.'}
 
-def run_cases(workspace,classes,out,seed,can_start=True,build_ok=True):
-    out=Path(out);out.mkdir(parents=True,exist_ok=True);rows=[]
-    meta={'B01','B02','B03','B04','B10'}
-    for cid,spec in CASES.items():
+def run_cases(workspace,classes,out,seed,can_start=True,build_ok=True,track_name='base'):
+    out=Path(out);out.mkdir(parents=True,exist_ok=True);rows=[];t=get_track(track_name)
+    meta={'B01','B02','B03','B04','B10'}if track_name=='base'else {'B01','B02','B03','B10'}
+    for cid,spec in t.cases().items():
         dest=out/cid;dest.mkdir();result=dest/'case.json'
         base={k:v for k,v in spec.items()if k!='fn'}
         if not build_ok and cid not in {'B01','B02','B10'}:
@@ -82,10 +90,10 @@ def run_cases(workspace,classes,out,seed,can_start=True,build_ok=True):
         elif not can_start and cid not in meta:
             row={**base,'status':'not_run','message':'startup prerequisite failed; counted as zero','seconds':0}
         else:
-            cmd=[sys.executable,'-m','judge.worker','--workspace',str(workspace),'--classes',str(classes),'--artifacts',str(dest),'--case',cid,'--seed',str(seed),'--result',str(result)]
-            run=run_limited(cmd,ROOT,45 if cid.startswith('O')else 25,minimal_env(out))
+            cmd=[sys.executable,'-m','judge.worker','--workspace',str(workspace),'--classes',str(classes),'--artifacts',str(dest),'--case',cid,'--seed',str(seed),'--result',str(result),'--track',track_name]
+            limit=t.case_timeout(cid);run=run_limited(cmd,ROOT,limit,minimal_env(out))
             (dest/'worker.log').write_text(run['output'],encoding='utf-8')
-            if run['timeout']:row={**base,'status':'timeout','message':'case deadline exceeded; counted as zero','seconds':45 if cid.startswith('O')else 25}
+            if run['timeout']:row={**base,'status':'timeout','message':'case deadline exceeded; counted as zero','seconds':limit}
             elif result.exists():
                 try:row=json.loads(result.read_text())
                 except Exception:row={**base,'status':'error','message':'invalid worker result; inspect worker.log','seconds':0}
@@ -94,21 +102,21 @@ def run_cases(workspace,classes,out,seed,can_start=True,build_ok=True):
         print(f'{cid} {row["status"]}: {row["title"]}',flush=True)
     return rows
 
-def run_perf(classes,out,reps):
+def run_perf(classes,out,reps,track_name='base'):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
-    cmd=[sys.executable,'-m','judge.perf','--classes',str(classes),'--out',str(out),'--reps',str(reps)]
-    r=run_limited(cmd,ROOT,max(180,reps*60),minimal_env(out));(out/'worker.log').write_text(r['output'],encoding='utf-8')
+    cmd=[sys.executable,'-m','judge.perf','--classes',str(classes),'--out',str(out),'--reps',str(reps),'--track',track_name]
+    r=run_limited(cmd,ROOT,max(180,reps*(60 if track_name=='base'else 180)),minimal_env(out));(out/'worker.log').write_text(r['output'],encoding='utf-8')
     f=out/'performance.json'
     if r['timeout']:return {'status':'candidate_failure','error':'performance deadline exceeded'}
     if f.exists():return json.loads(f.read_text())
     return {'status':'candidate_failure','error':'performance worker failed','worker_output':r['output'][-2000:]}
 
-def calibrate(out,reps=3):
-    out=fresh_out(out);print('Building trusted reference for local calibration.',flush=True)
-    b=build(ROOT/'reference',out/'classes');write_json(out/'build.json',b)
+def calibrate(out,reps=3,track_name='base'):
+    t=get_track(track_name);out=fresh_out(out);print('Building trusted reference for local calibration.',flush=True)
+    b=t.build(t.root/'reference',out/'classes');write_json(out/'build.json',b)
     if b['returncode']!=0 or b['timeout']:raise RuntimeError('Reference build failed: '+b['output'])
-    measured=run_perf(out/'classes',out/'measurements',reps)
-    result={'benchmark_version':VERSION,'judge_sha256':trusted_hash(),'reference_sha256':digest_tree(ROOT/'reference/src'),
+    measured=run_perf(out/'classes',out/'measurements',reps,track_name)
+    result={'benchmark_version':VERSION,'track':track_name,'judge_sha256':trusted_hash(track_name),'reference_sha256':digest_tree(t.root/'reference/src'),
             'created_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'measurement':measured}
     write_json(out/'calibration.json',result)
     if measured.get('status')!='measured':raise RuntimeError('Reference calibration failed; inspect '+str(out))
@@ -128,17 +136,18 @@ def manual_review(path):
     return {'scores_10':scores,'review':r}
 
 def grade(a):
+    track_name=getattr(a,'track','base')or 'base';t=get_track(track_name);use_track(track_name)
     out=fresh_out(a.out);workspace=Path(a.workspace).resolve()
-    if workspace==ROOT/'candidate':print('WARNING: evaluating the unfinished starter, not a model solution.',flush=True)
+    if workspace==t.root/'candidate':print('WARNING: evaluating the unfinished starter, not a model solution.',flush=True)
     source_hash=snapshot(workspace,out/'submission');workspace=out/'submission'
-    before=trusted_hash();env=environment();start=time.monotonic()
+    before=trusted_hash(track_name);env=environment();start=time.monotonic()
     metadata=json.loads(Path(a.metadata).read_text())if a.metadata else {}
     review=manual_review(a.review)
-    report={'schema_version':'1.1','benchmark':'ReserveLedger','benchmark_version':VERSION,'run_id':a.run_id,'model_label':a.model_label,
+    report={'schema_version':'1.1','benchmark':t.benchmark,'track':track_name,'benchmark_version':VERSION,'run_id':a.run_id,'model_label':a.model_label,
             'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'seed':a.seed,
-            'submission_sha256':source_hash,'java_source_sha256':digest_tree(workspace/'src','.java'),'judge_sha256':before,
+            'submission_sha256':source_hash,'java_source_sha256':digest_tree(workspace/'src','.java')if (workspace/'src').is_dir()else None,'judge_sha256':before,
             'metadata':metadata,'environment':env,'manual_review':review}
-    b=build(workspace,out/'classes');report['build']=b;write_json(out/'build.json',b)
+    b=t.build(workspace,out/'classes');report['build']=b;write_json(out/'build.json',b)
     build_ok=b['returncode']==0 and not b['timeout'];health_ok=False;health_message='not attempted'
     if build_ok:
         s=Server(out/'classes',out/'preflight')
@@ -146,7 +155,7 @@ def grade(a):
         except Exception as e:health_message=str(e)
         finally:s.stop()
     report['preflight']={'build_ok':build_ok,'health_ok':health_ok,'message':health_message}
-    rows=run_cases(workspace,out/'classes',out/'cases',a.seed,health_ok,build_ok);report['cases']=rows
+    rows=run_cases(workspace,out/'classes',out/'cases',a.seed,health_ok,build_ok,track_name);report['cases']=rows
     scores={d:case_score([r for r in rows if r['dimension']==d])for d in DIMENSIONS if d not in ('D09','D10')}
     infrastructure_errors=[];diagnostic=bool(a.skip_performance or a.skip_mutation or a.perf_reps<3)
     if not build_ok or not health_ok:
@@ -160,10 +169,10 @@ def grade(a):
             try:
                 if a.calibration:
                     cal=json.loads(Path(a.calibration).read_text())
-                    if cal.get('benchmark_version')!=VERSION or cal.get('judge_sha256')!=before or cal.get('reference_sha256')!=digest_tree(ROOT/'reference/src'):
+                    if cal.get('benchmark_version')!=VERSION or cal.get('judge_sha256')!=before or cal.get('reference_sha256')!=digest_tree(t.root/'reference/src'):
                         raise ValueError('Calibration belongs to a different benchmark/reference revision; recalibrate')
-                else:cal=calibrate(out/'calibration',a.perf_reps)
-                measured=run_perf(out/'classes',out/'performance',a.perf_reps);result=compare(measured,cal['measurement'])
+                else:cal=calibrate(out/'calibration',a.perf_reps,track_name)
+                measured=run_perf(out/'classes',out/'performance',a.perf_reps,track_name);result=compare(measured,cal['measurement'])
                 report['performance']={**result,'summary':measured.get('summary'),'measurement_file':'performance/performance.json',
                     'calibration_created_at_utc':cal.get('created_at_utc'),'reference_summary':cal['measurement'].get('summary')}
                 scores['D09']=result['score_10']
@@ -174,11 +183,11 @@ def grade(a):
             report['test_quality']={'score_10':0,'status':'not_run','reason':'diagnostic skip'};scores['D10']=0
         else:
             try:
-                rb=build(ROOT/'reference',out/'reference-classes');write_json(out/'reference-build.json',rb)
+                rb=t.build(t.root/'reference',out/'reference-classes');write_json(out/'reference-build.json',rb)
                 if rb['returncode']!=0 or rb['timeout']:raise RuntimeError('reference build failed')
                 dest=out/'test-quality';dest.mkdir()
-                command=[sys.executable,'-m','judge.mutation','--workspace',str(workspace),'--classes',str(out/'reference-classes'),'--out',str(dest)]
-                run=run_limited(command,ROOT,420,minimal_env(dest));(dest/'worker.log').write_text(run['output'],encoding='utf-8')
+                command=[sys.executable,'-m',t.mutation_module,'--workspace',str(workspace),'--classes',str(out/'reference-classes'),'--out',str(dest)]
+                run=run_limited(command,ROOT,420 if track_name=='base'else 2400,minimal_env(dest));(dest/'worker.log').write_text(run['output'],encoding='utf-8')
                 if run['timeout']:result={'score_10':0,'status':'candidate_tests_timeout'}
                 elif (dest/'mutation.json').exists():result=json.loads((dest/'mutation.json').read_text())
                 else:raise RuntimeError('mutation worker failed; inspect test-quality/worker.log')
@@ -188,7 +197,7 @@ def grade(a):
     critical=critical_failures(rows)
     report['summary']=summarize(scores,build_ok and health_ok,critical)
     report['failure_clusters']=failure_clusters(rows)
-    integrity=trusted_hash()==before and digest_tree(workspace)==source_hash and frozen_ok(workspace)
+    integrity=trusted_hash(track_name)==before and digest_tree(workspace)==source_hash and t.frozen_ok(workspace)
     if not integrity:report['summary']['overall_10']=0;report['summary']['gate']='INTEGRITY_FAILURE'
     complete=not diagnostic and not infrastructure_errors
     report['validity']={'complete_profile':complete,'diagnostic':diagnostic,'integrity_ok':integrity,
@@ -208,7 +217,7 @@ def grade(a):
 def emit(out,r):
     write_json(out/'report.json',r)
     def clean(s):return str(s).replace('|','\\|').replace('\n',' ')[:600]
-    lines=[f'# ReserveLedger 评测报告：{r["model_label"]}', '',f'- Run ID：`{r["run_id"]}`',f'- 基准：{r["benchmark_version"]}；测试种子：{r["seed"]}',
+    lines=[f'# {r.get("benchmark","ReserveLedger")} 评测报告：{r["model_label"]}', '',f'- Run ID：`{r["run_id"]}`',f'- 基准：{r["benchmark_version"]}（赛道 `{r.get("track","base")}`）；测试种子：{r["seed"]}',
         f'- 源码快照 SHA256：`{r["submission_sha256"]}`',f'- 完整且可计分：**{r["validity"]["rankable"]}**',
         f'- 自动原始综合：**{r["summary"]["raw_overall_10"]:.3f} / 10**',
         f'- 关键错误门槛后：**{r["summary"]["overall_10"]:.3f} / 10**',
@@ -237,7 +246,7 @@ def emit(out,r):
     metric={'model_label':r['model_label'],'run_id':r['run_id'],'overall_10':r['summary']['official_overall_10'],**(r.get('performance',{}).get('summary')or {})}
     for key,value in r.get('metadata',{}).get('generation_metrics',{}).items():metric['generation_'+key]=value
     with (out/'metrics.csv').open('w',newline='',encoding='utf-8-sig')as f:w=csv.DictWriter(f,fieldnames=list(metric));w.writeheader();w.writerow(metric)
-    suite=ET.Element('testsuite',name='ReserveLedger',tests=str(len(r['cases'])),failures=str(sum(row['status']!='pass'for row in r['cases'])))
+    suite=ET.Element('testsuite',name=r.get('benchmark','ReserveLedger'),tests=str(len(r['cases'])),failures=str(sum(row['status']!='pass'for row in r['cases'])))
     for row in r['cases']:
         test=ET.SubElement(suite,'testcase',classname=row['dimension'],name=row['id']+' '+row['title'],time=str(row.get('seconds',0)))
         if row['status']!='pass':ET.SubElement(test,'failure',type=row['status'],message=row.get('message','')).text=row.get('traceback',row.get('message',''))

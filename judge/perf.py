@@ -2,12 +2,30 @@
 from __future__ import annotations
 import argparse,concurrent.futures as cf,hashlib,json,math,os,statistics,threading,time,traceback
 from pathlib import Path
-from .runtime import Server,environment,rss_bytes,check,matches
+from .runtime import Server,TRACK,environment,rss_bytes,check,matches,use_track
 from .scoring import rate_score
 
 PROFILE={'id':'reserveledger-standard-v1','warmup_reads':200,'read_requests':1000,'read_workers':8,'lifecycle_operations':160,'lifecycle_workers':8,'small_active':100,'large_active':1500,'scale_requests':400,'scale_workers':4}
 PROFILE_HASH=hashlib.sha256(json.dumps(PROFILE,sort_keys=True).encode()).hexdigest()
 WEIGHTS={'read_throughput':.25,'lifecycle_throughput':.25,'read_tail_latency':.20,'scale_growth':.20,'memory':.10}
+# t1-spring adds SQL round trips per read request (judge overlay), which is where N+1 queries show up.
+SPRING_WEIGHTS={'read_throughput':.20,'lifecycle_throughput':.20,'read_tail_latency':.15,'scale_growth':.15,'memory':.10,'sql_efficiency':.20}
+SQL_PROBES=('/v1/items/hot','/v1/reservations?limit=100','/v1/reservations?state=ACTIVE&limit=100','/v1/stats')
+
+# t1-spring reads are a mix (inventory x2, one reservation, an ACTIVE page of 20), and the read-throughput phase
+# runs at the large (1500 ACTIVE) scale, so list/query cost and N+1 loading show up in throughput and growth.
+T1_READ_MIX='inventory,inventory,reservation,active-page-20'
+
+def profile_hash():
+    return PROFILE_HASH if TRACK['name']=='base'else hashlib.sha256(json.dumps({**PROFILE,'track':TRACK['name'],'sql_probes':SQL_PROBES,'read_mix':T1_READ_MIX},sort_keys=True).encode()).hexdigest()
+
+def sql_statements(s):
+    """Statements issued by the service for each probe request, measured sequentially via the overlay."""
+    from .spring import judge_info
+    total=0
+    for path in SQL_PROBES:
+        before=judge_info(s,'jdbc')['statements'];s.client.expect('GET',path);total+=judge_info(s,'jdbc')['statements']-before
+    return total
 
 def percentile(values,p):
     if not values:return None
@@ -47,8 +65,19 @@ def one_rep(classes,out,index):
         def inventory(expected_held,expected_sold):
             d=c.stock('hot')
             check(matches(d,{'sku':'hot','total':1000000000,'available':1000000000-expected_held-expected_sold,'held':expected_held,'sold':expected_sold}),'incorrect inventory during load')
+        mixed=TRACK['name']=='t1-spring';ids=[]
+        def mixed_read(i,held,sold):
+            if not mixed or i%4 in (0,1):return inventory(held,sold)
+            rid=ids[(i*7919)%len(ids)]
+            if i%4==2:
+                r=c.get(rid);check(r.get('id')==rid and r.get('state')=='ACTIVE','incorrect reservation during load')
+                return
+            after=int(rid)-1;p=c.expect('GET',f'/v1/reservations?state=ACTIVE&limit=20&after={after}')
+            got=[int(r['id'])for r in p.get('items',[])]
+            check(0<len(got)<=20 and got==sorted(got)and got[0]>after and all(r.get('state')=='ACTIVE'for r in p['items']),'incorrect ACTIVE page during load')
+        def reserve_active(i):ids.append(c.reserve('active'+str(i),[{'sku':'hot','quantity':1}],86400000)['id'])
         for _ in range(PROFILE['warmup_reads']):inventory(0,0)
-        read=load(PROFILE['read_requests'],PROFILE['read_workers'],lambda i:inventory(0,0))
+        read=None if mixed else load(PROFILE['read_requests'],PROFILE['read_workers'],lambda i:inventory(0,0))
         def cycle(i):
             a=c.reserve('cycle'+str(i),[{'sku':'hot','quantity':1}],86400000)
             check(a.get('state')=='ACTIVE' and matches(a.get('lines'),[{'sku':'hot','quantity':1}]),'incorrect reservation response')
@@ -56,13 +85,15 @@ def one_rep(classes,out,index):
             check(b.get('state')==('CONFIRMED'if i%2 else 'CANCELLED'),'incorrect terminal state')
         life=load(PROFILE['lifecycle_operations'],PROFILE['lifecycle_workers'],cycle)
         sold=PROFILE['lifecycle_operations']//2;inventory(0,sold)
-        for i in range(PROFILE['small_active']):c.reserve('active'+str(i),[{'sku':'hot','quantity':1}],86400000)
-        for _ in range(50):inventory(PROFILE['small_active'],sold)
-        small=load(PROFILE['scale_requests'],PROFILE['scale_workers'],lambda i:inventory(PROFILE['small_active'],sold))
-        for i in range(PROFILE['small_active'],PROFILE['large_active']):c.reserve('active'+str(i),[{'sku':'hot','quantity':1}],86400000)
-        for _ in range(50):inventory(PROFILE['large_active'],sold)
-        large=load(PROFILE['scale_requests'],PROFILE['scale_workers'],lambda i:inventory(PROFILE['large_active'],sold))
+        for i in range(PROFILE['small_active']):reserve_active(i)
+        for i in range(50):mixed_read(i,PROFILE['small_active'],sold)
+        small=load(PROFILE['scale_requests'],PROFILE['scale_workers'],lambda i:mixed_read(i,PROFILE['small_active'],sold))
+        for i in range(PROFILE['small_active'],PROFILE['large_active']):reserve_active(i)
+        for i in range(50):mixed_read(i,PROFILE['large_active'],sold)
+        large=load(PROFILE['scale_requests'],PROFILE['scale_workers'],lambda i:mixed_read(i,PROFILE['large_active'],sold))
+        if mixed:read=load(PROFILE['read_requests'],PROFILE['read_workers'],lambda i:mixed_read(i,PROFILE['large_active'],sold))
         inventory(PROFILE['large_active'],sold);cpu_end=process_cpu_seconds(s.proc.pid)
+        sql=sql_statements(s)if TRACK['name']=='t1-spring'else None
         phases={'read':read,'lifecycle':life,'small':small,'large':large};valid=all(v['errors']==0 for v in phases.values())
         return {'index':index,'status':'measured'if valid else 'candidate_failure','phases':phases,
                 'read_rps':read['successful_ops_per_second'],'lifecycle_ops_per_sec':life['successful_ops_per_second'],
@@ -70,7 +101,8 @@ def one_rep(classes,out,index):
                 'lifecycle_p95_ms':life['p95_ms'],'growth_ratio':large['p95_ms']/small['p95_ms'],
                 'peak_rss_bytes':max(samples)if samples else None,
                 'java_cpu_seconds':cpu_end-cpu_start if cpu_start is not None and cpu_end is not None else None,
-                'possible_client_bottleneck':any(v['possible_client_bottleneck']for v in phases.values())}
+                'possible_client_bottleneck':any(v['possible_client_bottleneck']for v in phases.values()),
+                **({'sql_statements':sql}if sql is not None else {})}
     except Exception as e:
         return {'index':index,'status':'candidate_failure','error':str(e),'traceback':traceback.format_exc(),'peak_rss_bytes':max(samples)if samples else None}
     finally:
@@ -80,6 +112,7 @@ def one_rep(classes,out,index):
 
 def combine(repetitions):
     result={};keys=['read_rps','lifecycle_ops_per_sec','read_p95_ms','read_p50_ms','read_p99_ms','lifecycle_p95_ms','growth_ratio','peak_rss_bytes','java_cpu_seconds']
+    if any('sql_statements'in r for r in repetitions):keys.append('sql_statements')
     for key in keys:
         values=[r.get(key)for r in repetitions]
         result[key]=statistics.median(values)if values and all(isinstance(v,(int,float))and math.isfinite(v)for v in values)else None
@@ -92,7 +125,7 @@ def measure(classes,out,reps=3):
         (out/f'rep-{index}.json').write_text(json.dumps(row,ensure_ascii=False,indent=2),encoding='utf-8')
         print(f'performance repetition {index+1}/{reps}: {row["status"]}',flush=True)
         if row['status']!='measured':break
-    return {'profile':PROFILE,'profile_sha256':PROFILE_HASH,'environment':environment(),'requested_reps':reps,
+    return {'profile':PROFILE,'profile_sha256':profile_hash(),'track':TRACK['name'],'environment':environment(),'requested_reps':reps,
             'status':'measured'if len(rows)==reps and all(r['status']=='measured'for r in rows)else 'candidate_failure',
             'repetitions':rows,'summary':combine(rows),
             'possible_client_bottleneck':any(r.get('possible_client_bottleneck',False)for r in rows)}
@@ -111,11 +144,15 @@ def compare(actual,reference):
         'read_tail_latency':rate_score(a['read_p95_ms'],r['read_p95_ms'],False),
         'scale_growth':rate_score(max(1,a['growth_ratio']),max(1,r['growth_ratio']),False),
         'memory':rate_score(a['peak_rss_bytes'],r['peak_rss_bytes'],False,1.25)}
-    return {'score_10':round(sum(components[k]*WEIGHTS[k]for k in WEIGHTS),4),'status':'measured','components_10':components,'weights':WEIGHTS,
+    weights=WEIGHTS
+    if reference.get('track')=='t1-spring':
+        weights=SPRING_WEIGHTS;components['sql_efficiency']=rate_score(a.get('sql_statements'),r.get('sql_statements'),False)
+    return {'score_10':round(sum(components[k]*weights[k]for k in weights),4),'status':'measured','components_10':components,'weights':weights,
             'tolerance':{'performance':1.20,'memory':1.25},'possible_client_bottleneck':actual.get('possible_client_bottleneck',False)or reference.get('possible_client_bottleneck',False)}
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--classes',required=True);p.add_argument('--out',required=True);p.add_argument('--reps',type=int,default=3);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--classes',required=True);p.add_argument('--out',required=True);p.add_argument('--reps',type=int,default=3);p.add_argument('--track',default='base');a=p.parse_args()
+    use_track(a.track)
     if not 1<=a.reps<=20:p.error('--reps must be 1..20')
     r=measure(a.classes,a.out,a.reps);Path(a.out,'performance.json').write_text(json.dumps(r,ensure_ascii=False,indent=2),encoding='utf-8');print(json.dumps(r['summary'],ensure_ascii=False))
 if __name__=='__main__':main()

@@ -1,0 +1,355 @@
+{
+  "score_10": 9.1667,
+  "status": "measured",
+  "baseline_passed": false,
+  "baseline": [
+    {
+      "id": "correct-1",
+      "returncode": 1,
+      "timeout": false,
+      "log": "correct-1.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope",
+        "contract.BrokenOnCorrectTest#wrongExpectation"
+      ],
+      "failed": [
+        "contract.BrokenOnCorrectTest#wrongExpectation"
+      ]
+    },
+    {
+      "id": "correct-2",
+      "returncode": 1,
+      "timeout": false,
+      "log": "correct-2.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope",
+        "contract.BrokenOnCorrectTest#wrongExpectation"
+      ],
+      "failed": [
+        "contract.BrokenOnCorrectTest#wrongExpectation"
+      ]
+    },
+    {
+      "id": "correct-1-excluded",
+      "returncode": 0,
+      "timeout": false,
+      "log": "correct-1-excluded.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": []
+    },
+    {
+      "id": "correct-2-excluded",
+      "returncode": 0,
+      "timeout": false,
+      "log": "correct-2-excluded.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": []
+    }
+  ],
+  "tests_observed": 12,
+  "excluded_tests": [
+    "contract.BrokenOnCorrectTest#wrongExpectation"
+  ],
+  "kept_ratio": 0.9167,
+  "killed": 10,
+  "formula": "killed × (tests_observed − excluded) / tests_observed",
+  "mutants": [
+    {
+      "id": "M01",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M01.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell"
+      ],
+      "title": "允许超卖",
+      "killer": "C01",
+      "killed": true
+    },
+    {
+      "id": "M02",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M02.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain"
+      ],
+      "title": "相同幂等键重复创建",
+      "killer": "I01",
+      "killed": true
+    },
+    {
+      "id": "M03",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M03.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts"
+      ],
+      "title": "同键异参被接受",
+      "killer": "I03",
+      "killed": true
+    },
+    {
+      "id": "M04",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M04.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline"
+      ],
+      "title": "到期比较使用 > 而非 >=",
+      "killer": "T01",
+      "killed": true
+    },
+    {
+      "id": "M05",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M05.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce"
+      ],
+      "title": "重复取消多次释放",
+      "killer": "C04",
+      "killed": true
+    },
+    {
+      "id": "M06",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M06.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold"
+      ],
+      "title": "确认错误归还可用库存",
+      "killer": "F03",
+      "killed": true
+    },
+    {
+      "id": "M07",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M07.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed"
+      ],
+      "title": "已取消记录允许确认",
+      "killer": "T04",
+      "killed": true
+    },
+    {
+      "id": "M08",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M08.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing"
+      ],
+      "title": "多商品失败发生部分扣减",
+      "killer": "F06",
+      "killed": true
+    },
+    {
+      "id": "M09",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M09.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected"
+      ],
+      "title": "错误接受零预占数量",
+      "killer": "V02",
+      "killed": true
+    },
+    {
+      "id": "M10",
+      "returncode": 1,
+      "timeout": false,
+      "log": "M10.log",
+      "observed": [
+        "contract.ReserveLedgerContractTest#cancelledReservationCannotBeConfirmed",
+        "contract.ReserveLedgerContractTest#sameKeyDifferentPayloadConflicts",
+        "contract.ReserveLedgerContractTest#sameKeyRetryReturnsOriginalWithoutHoldingAgain",
+        "contract.ReserveLedgerContractTest#multiSkuFailureChangesNothing",
+        "contract.ReserveLedgerContractTest#zeroQuantityLineIsRejected",
+        "contract.ReserveLedgerContractTest#confirmMovesHeldToSold",
+        "contract.ReserveLedgerContractTest#concurrentReservationsNeverOversell",
+        "contract.ReserveLedgerContractTest#repeatedCancelReleasesOnce",
+        "contract.ReserveLedgerContractTest#reservationExpiresExactlyAtDeadline",
+        "contract.ReserveLedgerContractTest#listFiltersByState",
+        "contract.ReserveLedgerContractTest#errorsUseTheJsonEnvelope"
+      ],
+      "failed": [
+        "contract.ReserveLedgerContractTest#listFiltersByState"
+      ],
+      "title": "忽略列表状态过滤",
+      "killer": "F09",
+      "killed": true
+    }
+  ],
+  "timeout_policy": "no_kill_credit"
+}

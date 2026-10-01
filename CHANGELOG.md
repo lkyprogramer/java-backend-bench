@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0 — 2026-10-01
+
+新增赛道 **t1-spring**：同一份 ReserveLedger HTTP 契约，用 Spring Boot 3.5.16 + Spring Data JPA + Flyway + H2（Java 21）实现。base 赛道的契约与用例语义不变；所有命令新增 `--track`，缺省 `base`。两条赛道成绩不能混排。
+
+- 离线构建链：`tools/offline_repo.py fetch|check` 准备/复验离线 Maven 仓库（仓库位于评测目录之外）；考生工作区由 `bench.py prepare --track t1-spring` 写入 `.mvn/maven.config` 强制离线；裁判用冻结 pom 独立构建考生的 `src/main`。
+- 裁判 overlay（`tracks/t1-spring/overlay`）：JDBC 代理统计 SQL 往返与写事务提交，第 N 次写提交注入一次失败（与 base 的 `BENCH_FAIL_APPEND_AT` 对齐）；独立端口报告计数与 Flyway/ddl-auto 状态。数据源 URL 由裁判给出（`WRITE_DELAY=0` 保证已应答提交在 kill -9 后可见）。
+- 用例：80 个中 73 个原样复用；B01–B04、B10、R09（并发写入中硬终止，关键）、R10（非法启动参数/端口占用）替换为 Spring/数据库版本。
+- D09：t1 读负载为混合读（库存、单条预占、ACTIVE 分页）并在 1500 ACTIVE 规模下测吞吐；新增 SQL 效率子指标（20%）。
+- D10：考生的 `src/test/java/contract` JUnit 5 黑盒测试只与 JUnit + Jackson 一起编译，用 JUnit Console Launcher 对正确实现与 10 个受控缺陷执行；基线剔除与折算规则同 base。
+- 参考实现、`mediocre` 区分度对照实现、`tools/validate.py --track t1-spring` 自检（含对照实现落点检查，区间 5–7.5；实测 7.134）。
+- 修复：裁判子进程重设 HOME 后仍能找到离线仓库（`BENCH_T1_M2` 由父进程解析并传递）。
+
 ## 1.1.0 — 2026-10-01
 
 评分修订（P0）。候选契约 `candidate/TASK.md` 1.0.0 的业务语义不变；公开评分说明 `candidate/docs/SCORECARD.md` 已同步。1.0.0 与 1.1.0 的成绩不能混排。
